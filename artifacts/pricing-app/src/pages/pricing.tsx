@@ -54,6 +54,7 @@ export default function PricingPage() {
   const [selectedPlan, setSelectedPlan] = useState("9month");
   const [accountId, setAccountId] = useState("");
   const plansRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
 
   const handleTogglePlans = () => {
     const opening = !showPlans;
@@ -62,6 +63,10 @@ export default function PricingPage() {
       setTimeout(() => {
         plansRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
       }, 460);
+    } else {
+      setTimeout(() => {
+        topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
     }
   };
 
@@ -82,7 +87,7 @@ export default function PricingPage() {
       <div className="relative w-full max-w-lg flex flex-col gap-0 z-10">
 
         {/* Header */}
-        <div className="flex items-center gap-2 mb-6 px-1">
+        <div ref={topRef} className="flex items-center gap-2 mb-6 px-1">
           <Sparkles className="w-4 h-4 text-blue-300/80" />
           <span className="text-white/90 font-semibold text-base tracking-tight">Pro Access</span>
         </div>
