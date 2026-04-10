@@ -260,15 +260,20 @@ export default function PricingPage() {
         </div>
 
         {/* ───── PLANS SLIDE DOWN ───── */}
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {showPlans && (
             <motion.div
               key="plans"
               ref={plansRef}
-              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: "auto", marginTop: 16 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              initial={{ opacity: 0, height: 0, marginTop: 0, y: -8 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 16, y: 0 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0, y: -8 }}
+              transition={{
+                height: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                opacity: { duration: 0.35, ease: "easeInOut" },
+                marginTop: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                y: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+              }}
               className="overflow-hidden"
             >
               <div
@@ -295,9 +300,14 @@ export default function PricingPage() {
                     return (
                       <motion.button
                         key={plan.id}
-                        initial={{ opacity: 0, y: 14 }}
+                        initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.08, type: "spring", stiffness: 300, damping: 26 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{
+                          delay: i * 0.07,
+                          duration: 0.4,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
                         onClick={() => setSelectedPlan(plan.id)}
                         className="relative w-full text-left rounded-2xl transition-all duration-200 overflow-hidden"
                         style={{
