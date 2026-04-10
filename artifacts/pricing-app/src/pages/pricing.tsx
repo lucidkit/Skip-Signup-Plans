@@ -283,10 +283,10 @@ export default function PricingPage() {
               exit={{
                 opacity: 0, height: 0, marginTop: 0, y: -8,
                 transition: {
-                  height: { duration: 0.55, ease: [0.4, 0, 0.6, 1] },
-                  opacity: { duration: 0.3, ease: "easeIn", delay: 0.1 },
-                  marginTop: { duration: 0.55, ease: [0.4, 0, 0.6, 1] },
-                  y: { duration: 0.35, ease: [0.4, 0, 0.6, 1] },
+                  height: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                  opacity: { duration: 0.35, ease: "easeOut" },
+                  marginTop: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                  y: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
               className="overflow-hidden"
