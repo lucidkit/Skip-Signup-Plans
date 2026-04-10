@@ -60,8 +60,8 @@ export default function PricingPage() {
     setShowPlans(opening);
     if (opening) {
       setTimeout(() => {
-        plansRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 80);
+        plansRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 460);
     }
   };
 
