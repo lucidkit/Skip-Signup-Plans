@@ -58,21 +58,21 @@ export default function PricingPage() {
     <div
       className="min-h-screen flex items-start justify-center pt-10 pb-24 px-4"
       style={{
-        background: "radial-gradient(ellipse at 30% 0%, #3b0764 0%, #1e0538 40%, #0d0118 100%)",
+        background: "radial-gradient(ellipse at 30% 0%, #0c1e3d 0%, #07111f 55%, #030810 100%)",
       }}
     >
       {/* Ambient glow blobs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-purple-700/20 blur-[120px]" />
-        <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] rounded-full bg-violet-600/15 blur-[100px]" />
-        <div className="absolute bottom-[10%] left-[-5%] w-[300px] h-[300px] rounded-full bg-fuchsia-800/10 blur-[80px]" />
+        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[130px]" />
+        <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] rounded-full bg-cyan-700/8 blur-[110px]" />
+        <div className="absolute bottom-[10%] left-[-5%] w-[300px] h-[300px] rounded-full bg-indigo-800/10 blur-[90px]" />
       </div>
 
       <div className="relative w-full max-w-lg flex flex-col gap-0 z-10">
 
         {/* Header */}
         <div className="flex items-center gap-2 mb-6 px-1">
-          <Sparkles className="w-4 h-4 text-purple-300" />
+          <Sparkles className="w-4 h-4 text-blue-300/80" />
           <span className="text-white/90 font-semibold text-base tracking-tight">Pro Access</span>
         </div>
 
@@ -80,29 +80,29 @@ export default function PricingPage() {
         <div
           className="rounded-3xl overflow-hidden shadow-2xl"
           style={{
-            background: "rgba(255,255,255,0.06)",
+            background: "rgba(255,255,255,0.05)",
             backdropFilter: "blur(40px) saturate(180%)",
             WebkitBackdropFilter: "blur(40px) saturate(180%)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            boxShadow: "0 8px 64px rgba(120,40,200,0.25), inset 0 1px 0 rgba(255,255,255,0.15)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            boxShadow: "0 8px 64px rgba(30,80,200,0.18), inset 0 1px 0 rgba(255,255,255,0.12)",
           }}
         >
           {/* Top banner */}
           <div
             className="px-6 py-5"
             style={{
-              background: "linear-gradient(135deg, rgba(147,51,234,0.35) 0%, rgba(109,40,217,0.2) 100%)",
-              borderBottom: "1px solid rgba(255,255,255,0.08)",
+              background: "linear-gradient(135deg, rgba(29,78,216,0.30) 0%, rgba(14,52,145,0.18) 100%)",
+              borderBottom: "1px solid rgba(255,255,255,0.07)",
             }}
           >
             <div className="flex items-center gap-4">
               <div
                 className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: "linear-gradient(135deg, rgba(167,139,250,0.5) 0%, rgba(139,92,246,0.6) 100%)",
+                  background: "linear-gradient(135deg, rgba(96,165,250,0.45) 0%, rgba(59,130,246,0.55) 100%)",
                   backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  boxShadow: "0 4px 20px rgba(139,92,246,0.4)",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                  boxShadow: "0 4px 20px rgba(59,130,246,0.35)",
                 }}
               >
                 <Gift className="w-6 h-6 text-white" />
@@ -113,7 +113,7 @@ export default function PricingPage() {
                   <span
                     className="text-2xl font-extrabold"
                     style={{
-                      background: "linear-gradient(90deg, #e9d5ff, #c4b5fd, #a78bfa)",
+                      background: "linear-gradient(90deg, #bfdbfe, #93c5fd, #60a5fa)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                     }}
@@ -121,7 +121,7 @@ export default function PricingPage() {
                     FREE
                   </span>
                 </div>
-                <p className="text-purple-300/60 text-xs mt-0.5 font-medium">No credit card required</p>
+                <p className="text-blue-300/55 text-xs mt-0.5 font-medium">No credit card or payment required</p>
               </div>
             </div>
           </div>
@@ -139,9 +139,9 @@ export default function PricingPage() {
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
                   style={{
-                    background: "linear-gradient(135deg, rgba(167,139,250,0.6) 0%, rgba(139,92,246,0.7) 100%)",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    boxShadow: "0 2px 12px rgba(139,92,246,0.4)",
+                    background: "linear-gradient(135deg, rgba(96,165,250,0.55) 0%, rgba(59,130,246,0.65) 100%)",
+                    border: "1px solid rgba(255,255,255,0.18)",
+                    boxShadow: "0 2px 12px rgba(59,130,246,0.35)",
                   }}
                 >
                   <span className="text-white text-xs font-bold">{step.num}</span>
@@ -151,7 +151,7 @@ export default function PricingPage() {
                   {step.action && (
                     <a
                       href={step.action.href}
-                      className="inline-flex items-center gap-1.5 text-purple-300 hover:text-purple-200 text-sm font-semibold transition-colors duration-150 w-fit"
+                      className="inline-flex items-center gap-1.5 text-blue-300 hover:text-blue-200 text-sm font-semibold transition-colors duration-150 w-fit"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       {step.action.text}
@@ -164,27 +164,27 @@ export default function PricingPage() {
                         placeholder="Enter your Quotex Account ID"
                         value={accountId}
                         onChange={(e) => setAccountId(e.target.value)}
-                        className="flex-1 rounded-xl px-4 py-2.5 text-white text-sm outline-none transition-all duration-200"
+                        className="flex-1 rounded-xl px-4 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
                         style={{
-                          background: "rgba(255,255,255,0.06)",
-                          border: "1px solid rgba(255,255,255,0.12)",
+                          background: "rgba(255,255,255,0.05)",
+                          border: "1px solid rgba(255,255,255,0.10)",
                           backdropFilter: "blur(20px)",
                         }}
                         onFocus={(e) => {
-                          e.currentTarget.style.border = "1px solid rgba(167,139,250,0.5)";
-                          e.currentTarget.style.background = "rgba(255,255,255,0.09)";
+                          e.currentTarget.style.border = "1px solid rgba(96,165,250,0.45)";
+                          e.currentTarget.style.background = "rgba(255,255,255,0.08)";
                         }}
                         onBlur={(e) => {
-                          e.currentTarget.style.border = "1px solid rgba(255,255,255,0.12)";
-                          e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                          e.currentTarget.style.border = "1px solid rgba(255,255,255,0.10)";
+                          e.currentTarget.style.background = "rgba(255,255,255,0.05)";
                         }}
                       />
                       <button
                         className="text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
                         style={{
-                          background: "linear-gradient(135deg, rgba(139,92,246,0.8) 0%, rgba(109,40,217,0.9) 100%)",
+                          background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
                           border: "1px solid rgba(255,255,255,0.15)",
-                          boxShadow: "0 4px 16px rgba(139,92,246,0.3)",
+                          boxShadow: "0 4px 16px rgba(59,130,246,0.25)",
                         }}
                       >
                         Submit
@@ -204,24 +204,24 @@ export default function PricingPage() {
               className="w-full py-4 rounded-2xl font-bold text-white text-base tracking-wide transition-all duration-200"
               style={{
                 background: "linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #0369a1 100%)",
-                boxShadow: "0 8px 32px rgba(6,182,212,0.35), inset 0 1px 0 rgba(255,255,255,0.2)",
+                boxShadow: "0 8px 32px rgba(6,182,212,0.30), inset 0 1px 0 rgba(255,255,255,0.2)",
                 border: "1px solid rgba(255,255,255,0.15)",
               }}
             >
               Activate Pro Version
             </motion.button>
             <div className="flex items-center justify-center gap-1.5 mt-3">
-              <Lock className="w-3 h-3 text-white/20" />
-              <span className="text-white/25 text-[11px]">Secure · No payment needed</span>
+              <Lock className="w-3 h-3 text-white/18" />
+              <span className="text-white/22 text-[11px]">Secure · No payment needed</span>
             </div>
           </div>
         </div>
 
         {/* ───── DIVIDER ───── */}
         <div className="flex items-center gap-3 px-2 my-5">
-          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.07)" }} />
-          <span className="text-white/20 text-xs font-medium tracking-widest uppercase">or</span>
-          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.07)" }} />
+          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
+          <span className="text-white/18 text-xs font-medium tracking-widest uppercase">or</span>
+          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
         </div>
 
         {/* ───── "I RATHER NOT" BUTTON ───── */}
@@ -230,11 +230,11 @@ export default function PricingPage() {
             onClick={() => setShowPlans((v) => !v)}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full flex items-center justify-between px-6 py-4 rounded-2xl text-white/40 hover:text-white/60 transition-all duration-200 text-sm font-medium"
+            className="w-full flex items-center justify-between px-6 py-4 rounded-2xl text-white/35 hover:text-white/55 transition-all duration-200 text-sm font-medium"
             style={{
-              background: "rgba(255,255,255,0.03)",
+              background: "rgba(255,255,255,0.025)",
               backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.07)",
+              border: "1px solid rgba(255,255,255,0.06)",
             }}
           >
             <span>I rather not create an account</span>
@@ -245,7 +245,7 @@ export default function PricingPage() {
               <ChevronDown className="w-4 h-4" />
             </motion.span>
           </motion.button>
-          <p className="text-white/15 text-[11px]">Higher pricing applies without an account</p>
+          <p className="text-white/14 text-[11px]">Higher pricing applies without an account</p>
         </div>
 
         {/* ───── PLANS SLIDE DOWN ───── */}
@@ -265,16 +265,16 @@ export default function PricingPage() {
                   background: "rgba(255,255,255,0.04)",
                   backdropFilter: "blur(40px) saturate(180%)",
                   WebkitBackdropFilter: "blur(40px) saturate(180%)",
-                  border: "1px solid rgba(255,255,255,0.09)",
-                  boxShadow: "0 8px 48px rgba(80,20,150,0.2)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "0 8px 48px rgba(20,60,160,0.15)",
                 }}
               >
                 <div
                   className="px-5 pt-4 pb-3"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
                 >
-                  <p className="text-purple-300/50 text-xs font-semibold tracking-widest uppercase">Select a plan</p>
-                  <p className="text-white/20 text-[11px] mt-0.5">Immediate access · No account required</p>
+                  <p className="text-blue-300/45 text-xs font-semibold tracking-widest uppercase">Select a plan</p>
+                  <p className="text-white/18 text-[11px] mt-0.5">Immediate access · No account required</p>
                 </div>
 
                 <div className="px-4 py-4 flex flex-col gap-3">
@@ -290,19 +290,19 @@ export default function PricingPage() {
                         className="relative w-full text-left rounded-2xl transition-all duration-200 overflow-hidden"
                         style={{
                           background: isSelected
-                            ? "rgba(139,92,246,0.15)"
-                            : "rgba(255,255,255,0.04)",
+                            ? "rgba(59,130,246,0.12)"
+                            : "rgba(255,255,255,0.03)",
                           border: isSelected
-                            ? "1.5px solid rgba(167,139,250,0.5)"
-                            : "1.5px solid rgba(255,255,255,0.07)",
-                          boxShadow: isSelected ? "0 4px 24px rgba(139,92,246,0.15)" : "none",
+                            ? "1.5px solid rgba(96,165,250,0.45)"
+                            : "1.5px solid rgba(255,255,255,0.06)",
+                          boxShadow: isSelected ? "0 4px 24px rgba(59,130,246,0.12)" : "none",
                         }}
                       >
                         {plan.best && (
                           <span
                             className="absolute top-0 right-0 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl tracking-wider"
                             style={{
-                              background: "linear-gradient(135deg, rgba(139,92,246,0.8), rgba(109,40,217,0.9))",
+                              background: "linear-gradient(135deg, rgba(59,130,246,0.75), rgba(29,78,216,0.85))",
                             }}
                           >
                             BEST VALUE
@@ -310,22 +310,22 @@ export default function PricingPage() {
                         )}
                         <div className="flex items-center justify-between px-4 py-4">
                           <div>
-                            <span className="text-purple-300/50 text-[10px] font-bold tracking-widest uppercase block mb-1">
+                            <span className="text-blue-300/40 text-[10px] font-bold tracking-widest uppercase block mb-1">
                               {plan.label}
                             </span>
                             <div className="flex items-baseline gap-1.5">
                               <span className="text-white text-2xl font-extrabold">{plan.perMonth}</span>
-                              <span className="text-white/30 text-xs">/mo</span>
+                              <span className="text-white/28 text-xs">/mo</span>
                             </div>
                             <div className="flex items-center gap-2 mt-1.5">
-                              <span className="text-white/25 text-xs line-through">{plan.original}</span>
-                              <span className="text-white/70 text-xs font-semibold">{plan.sale}</span>
+                              <span className="text-white/22 text-xs line-through">{plan.original}</span>
+                              <span className="text-white/65 text-xs font-semibold">{plan.sale}</span>
                               <span
                                 className="text-[10px] font-bold px-1.5 py-0.5 rounded-md"
                                 style={{
-                                  background: "rgba(167,139,250,0.15)",
-                                  border: "1px solid rgba(167,139,250,0.25)",
-                                  color: "#c4b5fd",
+                                  background: "rgba(59,130,246,0.12)",
+                                  border: "1px solid rgba(96,165,250,0.22)",
+                                  color: "#93c5fd",
                                 }}
                               >
                                 Save {plan.save}
@@ -336,12 +336,12 @@ export default function PricingPage() {
                             className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200"
                             style={{
                               background: isSelected
-                                ? "linear-gradient(135deg, #a78bfa, #7c3aed)"
+                                ? "linear-gradient(135deg, #60a5fa, #2563eb)"
                                 : "transparent",
                               border: isSelected
-                                ? "1.5px solid rgba(167,139,250,0.8)"
-                                : "1.5px solid rgba(255,255,255,0.15)",
-                              boxShadow: isSelected ? "0 2px 10px rgba(139,92,246,0.4)" : "none",
+                                ? "1.5px solid rgba(96,165,250,0.8)"
+                                : "1.5px solid rgba(255,255,255,0.12)",
+                              boxShadow: isSelected ? "0 2px 10px rgba(59,130,246,0.35)" : "none",
                             }}
                           >
                             {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
@@ -362,15 +362,15 @@ export default function PricingPage() {
                     className="w-full py-4 rounded-2xl font-bold text-white text-sm transition-all duration-200"
                     style={{
                       background: "linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #0369a1 100%)",
-                      boxShadow: "0 6px 24px rgba(6,182,212,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
-                      border: "1px solid rgba(255,255,255,0.15)",
+                      boxShadow: "0 6px 24px rgba(6,182,212,0.25), inset 0 1px 0 rgba(255,255,255,0.18)",
+                      border: "1px solid rgba(255,255,255,0.14)",
                     }}
                   >
                     Continue to Payment
                   </motion.button>
                   <div className="flex items-center justify-center gap-1.5 mt-3">
-                    <Lock className="w-3 h-3 text-white/15" />
-                    <span className="text-white/20 text-[11px]">Secure crypto payment via NOWPayments</span>
+                    <Lock className="w-3 h-3 text-white/14" />
+                    <span className="text-white/18 text-[11px]">Secure crypto payment via NOWPayments</span>
                   </div>
                 </div>
               </div>
