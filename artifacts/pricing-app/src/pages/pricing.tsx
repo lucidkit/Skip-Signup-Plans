@@ -1,308 +1,219 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Sparkles, Star, Zap } from "lucide-react";
+import { Star, X, Check } from "lucide-react";
 
 const plans = [
   {
     id: "3month",
-    duration: "3 Months",
-    price: "$9.99",
-    perMonth: "$9.99/mo",
-    badge: null,
-    icon: Zap,
-    color: "from-violet-500 to-purple-600",
-    borderColor: "border-violet-200",
-    accentColor: "text-violet-600",
-    bgLight: "bg-violet-50",
-    features: [
-      "Full access to all features",
-      "Up to 5 projects",
-      "10 GB storage",
-      "Email support",
-      "Weekly updates",
-    ],
+    label: "3 MONTHS",
+    perMonth: "$49.00",
+    original: "$199",
+    sale: "$147",
+    save: "$52",
+    saveAmount: 52,
+    popular: false,
   },
   {
     id: "6month",
-    duration: "6 Months",
-    price: "$7.99",
-    perMonth: "$7.99/mo",
-    badge: "Most Popular",
-    icon: Star,
-    color: "from-rose-500 to-pink-600",
-    borderColor: "border-rose-300",
-    accentColor: "text-rose-600",
-    bgLight: "bg-rose-50",
-    features: [
-      "Everything in 3-month plan",
-      "Unlimited projects",
-      "50 GB storage",
-      "Priority support",
-      "Daily updates",
-      "Advanced analytics",
-    ],
+    label: "6 MONTHS",
+    perMonth: "$39.83",
+    original: "$399",
+    sale: "$239",
+    save: "$160",
+    saveAmount: 160,
+    popular: false,
   },
   {
     id: "9month",
-    duration: "9 Months",
-    price: "$5.99",
-    perMonth: "$5.99/mo",
-    badge: "Best Value",
-    icon: Sparkles,
-    color: "from-amber-500 to-orange-500",
-    borderColor: "border-amber-200",
-    accentColor: "text-amber-600",
-    bgLight: "bg-amber-50",
-    features: [
-      "Everything in 6-month plan",
-      "Unlimited storage",
-      "Dedicated support",
-      "Early feature access",
-      "Custom integrations",
-      "Team collaboration",
-      "Monthly reports",
-    ],
+    label: "9 MONTHS",
+    perMonth: "$29.88",
+    original: "$599",
+    sale: "$269",
+    save: "$330",
+    saveAmount: 330,
+    popular: true,
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-};
-
 const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
+      delay: i * 0.1,
       type: "spring",
-      stiffness: 260,
-      damping: 22,
+      stiffness: 280,
+      damping: 24,
     },
-  },
-};
-
-const titleVariants = {
-  hidden: { opacity: 0, y: -20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+  }),
 };
 
 export default function PricingPage() {
   const [showPlans, setShowPlans] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [selected, setSelected] = useState("9month");
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 py-16 overflow-hidden relative">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-violet-600/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-rose-600/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-amber-600/5 blur-3xl" />
-      </div>
-
-      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl">
-        <AnimatePresence mode="wait">
-          {!showPlans ? (
-            <motion.div
-              key="button"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.85, y: -20 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="flex flex-col items-center gap-6"
+    <div className="min-h-screen flex items-center justify-center bg-[#0d1b2e] px-4">
+      <AnimatePresence mode="wait">
+        {!showPlans ? (
+          <motion.div
+            key="cta"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.88, y: -16 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="flex flex-col items-center gap-5"
+          >
+            <motion.p
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="text-[#8ba3c0] text-xs tracking-widest uppercase font-semibold"
             >
-              <motion.p
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-slate-400 text-sm tracking-widest uppercase font-medium"
-              >
-                No commitment required
-              </motion.p>
+              No account needed
+            </motion.p>
 
-              <motion.button
-                onClick={() => setShowPlans(true)}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                className="relative group px-12 py-7 text-2xl font-bold text-white rounded-2xl overflow-hidden shadow-2xl"
-                style={{ minWidth: "340px" }}
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-rose-500 to-amber-500 transition-all duration-300 group-hover:opacity-90" />
-                <span className="absolute inset-[2px] rounded-xl bg-slate-900/60 backdrop-blur-sm" />
-                <span className="relative z-10 flex items-center justify-center gap-3">
-                  I rather not create account
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                  >
-                    →
-                  </motion.span>
-                </span>
-                <span className="absolute inset-0 rounded-2xl ring-2 ring-white/10 group-hover:ring-white/20 transition-all duration-300" />
-              </motion.button>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-slate-500 text-sm"
-              >
-                Choose a plan that works for you
-              </motion.p>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="plans"
-              initial="hidden"
-              animate="visible"
-              variants={containerVariants}
-              className="w-full flex flex-col items-center gap-10"
+            <motion.button
+              onClick={() => setShowPlans(true)}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="relative px-12 py-6 text-xl font-bold text-white rounded-2xl overflow-hidden shadow-2xl"
+              style={{ minWidth: "320px" }}
             >
-              <motion.div variants={titleVariants} className="text-center">
-                <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">
-                  Pick your plan
-                </h1>
-                <p className="text-slate-400 text-lg">
-                  Simple, transparent pricing. Cancel anytime.
-                </p>
-              </motion.div>
+              <span className="absolute inset-0 bg-gradient-to-r from-[#4f6ef7] via-[#7c3aed] to-[#db2777]" />
+              <span className="absolute inset-[2px] rounded-xl bg-[#0d1b2e]/70 backdrop-blur-sm" />
+              <span className="relative z-10 flex items-center justify-center gap-3">
+                I rather not create account
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                  className="text-2xl"
+                >
+                  →
+                </motion.span>
+              </span>
+            </motion.button>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                {plans.map((plan) => {
-                  const Icon = plan.icon;
-                  const isSelected = selectedPlan === plan.id;
-                  const isPopular = plan.badge === "Most Popular";
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-[#4a6280] text-xs"
+            >
+              Browse available plans below
+            </motion.p>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="plans"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="w-full max-w-md"
+          >
+            <div className="bg-[#0f2236] rounded-2xl overflow-hidden shadow-2xl border border-[#1c3352]">
+              <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-[#1c3352]">
+                <div className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-[#4f6ef7]" fill="#4f6ef7" />
+                  <span className="text-white font-bold text-base">Pro Subscription</span>
+                </div>
+                <button
+                  onClick={() => setShowPlans(false)}
+                  className="text-[#4a6280] hover:text-white transition-colors duration-150 p-1 rounded-lg hover:bg-white/5"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
 
+              <p className="px-5 py-3 text-[#8ba3c0] text-xs">
+                Access all premium features without creating an account. Higher pricing applies.
+              </p>
+
+              <div className="px-5 pb-2 flex flex-col gap-3">
+                {plans.map((plan, i) => {
+                  const isSelected = selected === plan.id;
                   return (
-                    <motion.div
+                    <motion.button
                       key={plan.id}
+                      custom={i}
+                      initial="hidden"
+                      animate="visible"
                       variants={cardVariants}
-                      whileHover={{ y: -6, scale: 1.02 }}
-                      onClick={() => setSelectedPlan(plan.id)}
-                      className={`relative rounded-2xl cursor-pointer border-2 transition-all duration-300 overflow-hidden ${
+                      onClick={() => setSelected(plan.id)}
+                      className={`relative w-full text-left rounded-xl border-2 transition-all duration-200 overflow-hidden ${
                         isSelected
-                          ? `${plan.borderColor} shadow-2xl shadow-white/5`
-                          : "border-slate-700 hover:border-slate-500"
-                      } ${isPopular ? "md:-mt-4 md:mb-4" : ""}`}
+                          ? "border-[#4f6ef7] bg-[#162b45]"
+                          : "border-[#1c3352] bg-[#111e2e] hover:border-[#253f5e]"
+                      }`}
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-0 transition-opacity duration-300 ${isSelected ? "opacity-5" : "group-hover:opacity-5"}`} />
+                      {plan.popular && (
+                        <span className="absolute top-0 right-0 bg-[#4f6ef7] text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg tracking-wider">
+                          BEST VALUE
+                        </span>
+                      )}
 
-                      <div className="relative bg-slate-800/80 backdrop-blur-sm rounded-xl p-7 h-full flex flex-col">
-                        {plan.badge && (
-                          <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: 0.4, type: "spring" }}
-                            className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r ${plan.color} shadow-lg`}
-                          >
-                            {plan.badge}
-                          </motion.div>
-                        )}
-
-                        <div className="flex items-center gap-3 mb-5 mt-2">
-                          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center shadow-lg`}>
-                            <Icon className="w-5 h-5 text-white" />
+                      <div className="flex items-center justify-between px-4 py-3.5">
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-[#8ba3c0] text-[10px] font-bold tracking-widest uppercase">
+                            {plan.label}
+                          </span>
+                          <div className="flex items-baseline gap-2 mt-0.5">
+                            <span className="text-white text-xl font-extrabold">{plan.perMonth}</span>
+                            <span className="text-[#4a6280] text-xs">/mo</span>
                           </div>
-                          <h2 className="text-xl font-bold text-white">{plan.duration}</h2>
-                        </div>
-
-                        <div className="mb-6">
-                          <div className="flex items-end gap-1">
-                            <span className={`text-4xl font-extrabold ${plan.accentColor}`}>
-                              {plan.price}
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-[#4a6280] text-xs line-through">{plan.original}</span>
+                            <span className="text-white text-xs font-bold">{plan.sale}</span>
+                            <span className="bg-[#1a3a28] text-[#34d399] text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+                              Save {plan.save}
                             </span>
-                            <span className="text-slate-400 mb-1 text-sm">/month</span>
                           </div>
-                          <p className="text-slate-500 text-sm mt-1">
-                            Billed every {plan.id === "3month" ? "3" : plan.id === "6month" ? "6" : "9"} months
-                          </p>
                         </div>
 
-                        <ul className="space-y-3 flex-1 mb-6">
-                          {plan.features.map((feature, i) => (
-                            <motion.li
-                              key={feature}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.2 + i * 0.06 }}
-                              className="flex items-start gap-3 text-sm text-slate-300"
-                            >
-                              <span className={`mt-0.5 flex-shrink-0 w-4 h-4 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center`}>
-                                <Check className="w-2.5 h-2.5 text-white stroke-[3]" />
-                              </span>
-                              {feature}
-                            </motion.li>
-                          ))}
-                        </ul>
-
-                        <motion.button
-                          whileHover={{ scale: 1.03 }}
-                          whileTap={{ scale: 0.97 }}
-                          className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
-                            isSelected
-                              ? `bg-gradient-to-r ${plan.color} text-white shadow-lg`
-                              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-                          }`}
-                        >
-                          {isSelected ? "Selected" : "Select Plan"}
-                        </motion.button>
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                          isSelected ? "border-[#4f6ef7] bg-[#4f6ef7]" : "border-[#2a4a6e] bg-transparent"
+                        }`}>
+                          {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
+                        </div>
                       </div>
-                    </motion.div>
+                    </motion.button>
                   );
                 })}
               </div>
 
-              <AnimatePresence>
-                {selectedPlan && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                    className="flex flex-col sm:flex-row gap-4 items-center"
-                  >
-                    <motion.button
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="px-10 py-4 rounded-xl font-bold text-white text-lg bg-gradient-to-r from-violet-600 via-rose-500 to-amber-500 shadow-xl"
-                    >
-                      Continue with {plans.find((p) => p.id === selectedPlan)?.duration} Plan
-                    </motion.button>
-                    <button
-                      onClick={() => setSelectedPlan(null)}
-                      className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200"
-                    >
-                      Clear selection
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div className="px-5 pt-3 pb-5">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full py-4 rounded-xl font-bold text-white text-sm bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] shadow-lg shadow-indigo-900/30 transition-all duration-200"
+                >
+                  Continue to Payment
+                </motion.button>
 
-              <motion.button
-                variants={titleVariants}
-                onClick={() => {
-                  setShowPlans(false);
-                  setSelectedPlan(null);
-                }}
-                className="text-slate-600 hover:text-slate-400 text-sm transition-colors duration-200 underline underline-offset-2"
-              >
-                Go back
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+                <div className="flex items-center justify-center gap-1.5 mt-3">
+                  <svg className="w-3 h-3 text-[#4a6280]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-[#4a6280] text-[11px]">Secure checkout · Cancel anytime</span>
+                </div>
+              </div>
+            </div>
+
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              onClick={() => setShowPlans(false)}
+              className="w-full text-center mt-3 text-[#4a6280] hover:text-[#8ba3c0] text-xs transition-colors duration-200"
+            >
+              ← Go back
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
