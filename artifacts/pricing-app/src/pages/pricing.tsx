@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, X, Check } from "lucide-react";
+import { Gift, Check, ExternalLink, Star, ChevronDown, ChevronUp, Lock } from "lucide-react";
 
 const plans = [
   {
@@ -10,8 +10,6 @@ const plans = [
     original: "$199",
     sale: "$147",
     save: "$52",
-    saveAmount: 52,
-    popular: false,
   },
   {
     id: "6month",
@@ -20,8 +18,6 @@ const plans = [
     original: "$399",
     sale: "$239",
     save: "$160",
-    saveAmount: 160,
-    popular: false,
   },
   {
     id: "9month",
@@ -30,190 +26,242 @@ const plans = [
     original: "$599",
     sale: "$269",
     save: "$330",
-    saveAmount: 330,
-    popular: true,
+    best: true,
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24, scale: 0.96 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: i * 0.1,
-      type: "spring",
-      stiffness: 280,
-      damping: 24,
-    },
-  }),
-};
+const steps = [
+  {
+    num: 1,
+    label: "Create a Quotex account using the link below",
+    action: { text: "Open Quotex", href: "#" },
+  },
+  {
+    num: 2,
+    label: "Verify your account and make a deposit",
+    action: null,
+  },
+  {
+    num: 3,
+    label: "Enter your Account ID below",
+    action: null,
+    input: true,
+  },
+];
 
 export default function PricingPage() {
   const [showPlans, setShowPlans] = useState(false);
-  const [selected, setSelected] = useState("9month");
+  const [selectedPlan, setSelectedPlan] = useState("9month");
+  const [accountId, setAccountId] = useState("");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0d1b2e] px-4">
-      <AnimatePresence mode="wait">
-        {!showPlans ? (
-          <motion.div
-            key="cta"
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.88, y: -16 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex flex-col items-center gap-5"
-          >
-            <motion.p
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="text-[#8ba3c0] text-xs tracking-widest uppercase font-semibold"
-            >
-              No account needed
-            </motion.p>
+    <div className="min-h-screen bg-[#080f1c] flex items-start justify-center pt-10 pb-20 px-4">
+      <div className="w-full max-w-lg flex flex-col gap-0">
 
-            <motion.button
-              onClick={() => setShowPlans(true)}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="relative px-12 py-6 text-xl font-bold text-white rounded-2xl overflow-hidden shadow-2xl"
-              style={{ minWidth: "320px" }}
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-[#4f6ef7] via-[#7c3aed] to-[#db2777]" />
-              <span className="absolute inset-[2px] rounded-xl bg-[#0d1b2e]/70 backdrop-blur-sm" />
-              <span className="relative z-10 flex items-center justify-center gap-3">
-                I rather not create account
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-                  className="text-2xl"
-                >
-                  →
-                </motion.span>
-              </span>
-            </motion.button>
+        {/* Header */}
+        <div className="flex items-center gap-2 mb-6 px-1">
+          <Star className="w-5 h-5 text-[#4f6ef7]" fill="#4f6ef7" />
+          <span className="text-white font-bold text-lg tracking-tight">Pro Access</span>
+        </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-[#4a6280] text-xs"
-            >
-              Browse available plans below
-            </motion.p>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="plans"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="w-full max-w-md"
-          >
-            <div className="bg-[#0f2236] rounded-2xl overflow-hidden shadow-2xl border border-[#1c3352]">
-              <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-[#1c3352]">
+        {/* ───── FREE PRO SECTION (HERO) ───── */}
+        <div className="rounded-2xl border-2 border-[#1e3a5f] bg-[#0b1929] overflow-hidden shadow-2xl">
+          {/* Top banner */}
+          <div className="bg-gradient-to-r from-[#0f3460] via-[#112b50] to-[#0f3460] px-6 py-5 border-b border-[#1e3a5f]">
+            <div className="flex items-center gap-3 mb-1">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4f6ef7] to-[#22d3ee] flex items-center justify-center shadow-lg shadow-blue-900/40">
+                <Gift className="w-5 h-5 text-white" />
+              </div>
+              <div>
                 <div className="flex items-center gap-2">
-                  <Star className="w-4 h-4 text-[#4f6ef7]" fill="#4f6ef7" />
-                  <span className="text-white font-bold text-base">Pro Subscription</span>
+                  <span className="text-white font-extrabold text-2xl tracking-tight">Get Pro for</span>
+                  <span className="text-2xl font-extrabold bg-gradient-to-r from-[#4ade80] to-[#22d3ee] bg-clip-text text-transparent">
+                    FREE
+                  </span>
                 </div>
-                <button
-                  onClick={() => setShowPlans(false)}
-                  className="text-[#4a6280] hover:text-white transition-colors duration-150 p-1 rounded-lg hover:bg-white/5"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              <p className="px-5 py-3 text-[#8ba3c0] text-xs">
-                Access all premium features without creating an account. Higher pricing applies.
-              </p>
-
-              <div className="px-5 pb-2 flex flex-col gap-3">
-                {plans.map((plan, i) => {
-                  const isSelected = selected === plan.id;
-                  return (
-                    <motion.button
-                      key={plan.id}
-                      custom={i}
-                      initial="hidden"
-                      animate="visible"
-                      variants={cardVariants}
-                      onClick={() => setSelected(plan.id)}
-                      className={`relative w-full text-left rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-                        isSelected
-                          ? "border-[#4f6ef7] bg-[#162b45]"
-                          : "border-[#1c3352] bg-[#111e2e] hover:border-[#253f5e]"
-                      }`}
-                    >
-                      {plan.popular && (
-                        <span className="absolute top-0 right-0 bg-[#4f6ef7] text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg tracking-wider">
-                          BEST VALUE
-                        </span>
-                      )}
-
-                      <div className="flex items-center justify-between px-4 py-3.5">
-                        <div className="flex flex-col gap-0.5">
-                          <span className="text-[#8ba3c0] text-[10px] font-bold tracking-widest uppercase">
-                            {plan.label}
-                          </span>
-                          <div className="flex items-baseline gap-2 mt-0.5">
-                            <span className="text-white text-xl font-extrabold">{plan.perMonth}</span>
-                            <span className="text-[#4a6280] text-xs">/mo</span>
-                          </div>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-[#4a6280] text-xs line-through">{plan.original}</span>
-                            <span className="text-white text-xs font-bold">{plan.sale}</span>
-                            <span className="bg-[#1a3a28] text-[#34d399] text-[10px] font-bold px-1.5 py-0.5 rounded-md">
-                              Save {plan.save}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-                          isSelected ? "border-[#4f6ef7] bg-[#4f6ef7]" : "border-[#2a4a6e] bg-transparent"
-                        }`}>
-                          {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
-                        </div>
-                      </div>
-                    </motion.button>
-                  );
-                })}
-              </div>
-
-              <div className="px-5 pt-3 pb-5">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full py-4 rounded-xl font-bold text-white text-sm bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] shadow-lg shadow-indigo-900/30 transition-all duration-200"
-                >
-                  Continue to Payment
-                </motion.button>
-
-                <div className="flex items-center justify-center gap-1.5 mt-3">
-                  <svg className="w-3 h-3 text-[#4a6280]" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-[#4a6280] text-[11px]">Secure checkout · Cancel anytime</span>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="bg-[#4ade80]/20 text-[#4ade80] text-xs font-bold px-2 py-0.5 rounded-full border border-[#4ade80]/30">
+                    30 Days Included
+                  </span>
+                  <span className="text-[#4a7096] text-xs">No credit card required</span>
                 </div>
               </div>
             </div>
+          </div>
 
+          {/* Steps */}
+          <div className="px-6 py-5 flex flex-col gap-5">
+            {steps.map((step, idx) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1, duration: 0.4 }}
+                className="flex gap-4"
+              >
+                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-[#4f6ef7] to-[#7c3aed] flex items-center justify-center shadow-md shadow-indigo-900/40 mt-0.5">
+                  <span className="text-white text-xs font-extrabold">{step.num}</span>
+                </div>
+                <div className="flex-1 flex flex-col gap-1.5">
+                  <span className="text-[#c5d8ef] text-sm leading-snug">{step.label}</span>
+                  {step.action && (
+                    <a
+                      href={step.action.href}
+                      className="inline-flex items-center gap-1.5 text-[#4f6ef7] hover:text-[#7c9fff] text-sm font-semibold transition-colors duration-150 w-fit"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      {step.action.text}
+                    </a>
+                  )}
+                  {step.input && (
+                    <div className="flex gap-2 mt-1">
+                      <input
+                        type="text"
+                        placeholder="Enter your Quotex Account ID"
+                        value={accountId}
+                        onChange={(e) => setAccountId(e.target.value)}
+                        className="flex-1 bg-[#0d1f35] border border-[#1e3a5f] focus:border-[#4f6ef7] rounded-xl px-4 py-2.5 text-white text-sm placeholder-[#2d5070] outline-none transition-colors duration-150"
+                      />
+                      <button className="bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150 shadow-lg shadow-indigo-900/30">
+                        Submit
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="px-6 pb-6">
             <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              onClick={() => setShowPlans(false)}
-              className="w-full text-center mt-3 text-[#4a6280] hover:text-[#8ba3c0] text-xs transition-colors duration-200"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="w-full py-4 rounded-xl font-extrabold text-white text-base bg-gradient-to-r from-[#4ade80] via-[#22d3ee] to-[#4f6ef7] shadow-xl shadow-emerald-900/20 tracking-wide"
             >
-              ← Go back
+              ✨ Claim My FREE 30 Days
             </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div className="flex items-center justify-center gap-1.5 mt-3">
+              <Lock className="w-3 h-3 text-[#2d5070]" />
+              <span className="text-[#2d5070] text-[11px]">Secure · No payment needed for free trial</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ───── DIVIDER ───── */}
+        <div className="flex items-center gap-3 px-2 my-5">
+          <div className="flex-1 h-px bg-[#1a2d42]" />
+          <span className="text-[#2d5070] text-xs font-medium tracking-widest uppercase">or</span>
+          <div className="flex-1 h-px bg-[#1a2d42]" />
+        </div>
+
+        {/* ───── "I RATHER NOT" BUTTON ───── */}
+        <div className="flex flex-col items-center gap-2">
+          <motion.button
+            onClick={() => setShowPlans((v) => !v)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full flex items-center justify-between px-6 py-4 rounded-xl border border-[#1e3a5f] bg-[#0b1929]/60 text-[#7a9bbf] hover:text-[#a8c4e0] hover:border-[#2a4a6e] transition-all duration-200 text-sm font-medium"
+          >
+            <span>I rather not create an account</span>
+            <motion.span
+              animate={{ rotate: showPlans ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="w-4 h-4" />
+            </motion.span>
+          </motion.button>
+          <p className="text-[#1e3a5f] text-[11px]">Higher pricing applies without an account</p>
+        </div>
+
+        {/* ───── PLANS SLIDE DOWN ───── */}
+        <AnimatePresence>
+          {showPlans && (
+            <motion.div
+              key="plans"
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="overflow-hidden"
+            >
+              <div className="rounded-2xl border border-[#1e3a5f] bg-[#0b1929] overflow-hidden">
+                <div className="px-5 pt-4 pb-2 border-b border-[#122034]">
+                  <p className="text-[#4a7096] text-xs font-medium tracking-widest uppercase">Select a paid plan</p>
+                  <p className="text-[#2d5070] text-[11px] mt-0.5">No account required · Immediate access</p>
+                </div>
+
+                <div className="px-4 py-4 flex flex-col gap-3">
+                  {plans.map((plan, i) => {
+                    const isSelected = selectedPlan === plan.id;
+                    return (
+                      <motion.button
+                        key={plan.id}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.08, type: "spring", stiffness: 300, damping: 26 }}
+                        onClick={() => setSelectedPlan(plan.id)}
+                        className={`relative w-full text-left rounded-xl border-2 transition-all duration-200 overflow-hidden ${
+                          isSelected
+                            ? "border-[#4f6ef7] bg-[#0f2040]"
+                            : "border-[#122034] bg-[#0b1929] hover:border-[#1e3a5f]"
+                        }`}
+                      >
+                        {plan.best && (
+                          <span className="absolute top-0 right-0 bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] text-white text-[10px] font-bold px-2.5 py-1 rounded-bl-xl tracking-wider">
+                            BEST VALUE
+                          </span>
+                        )}
+                        <div className="flex items-center justify-between px-4 py-3.5">
+                          <div>
+                            <span className="text-[#4a7096] text-[10px] font-bold tracking-widest uppercase block mb-1">
+                              {plan.label}
+                            </span>
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="text-white text-2xl font-extrabold">{plan.perMonth}</span>
+                              <span className="text-[#2d5070] text-xs">/mo</span>
+                            </div>
+                            <div className="flex items-center gap-2 mt-1">
+                              <span className="text-[#2d5070] text-xs line-through">{plan.original}</span>
+                              <span className="text-[#c5d8ef] text-xs font-bold">{plan.sale}</span>
+                              <span className="bg-[#0d2d1a] text-[#4ade80] text-[10px] font-bold px-1.5 py-0.5 rounded border border-[#4ade80]/20">
+                                Save {plan.save}
+                              </span>
+                            </div>
+                          </div>
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                            isSelected ? "border-[#4f6ef7] bg-[#4f6ef7]" : "border-[#1e3a5f]"
+                          }`}>
+                            {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
+                          </div>
+                        </div>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                <div className="px-4 pb-5">
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.35 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="w-full py-4 rounded-xl font-bold text-white text-sm bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] shadow-lg shadow-indigo-900/30"
+                  >
+                    Continue to Payment
+                  </motion.button>
+                  <div className="flex items-center justify-center gap-1.5 mt-3">
+                    <Lock className="w-3 h-3 text-[#2d5070]" />
+                    <span className="text-[#2d5070] text-[11px]">Secure crypto payment via NOWPayments</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </div>
     </div>
   );
 }
