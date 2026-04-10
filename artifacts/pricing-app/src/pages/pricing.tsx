@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gift, Check, ExternalLink, Star, ChevronDown, ChevronUp, Lock } from "lucide-react";
+import { Gift, Check, ExternalLink, Sparkles, ChevronDown, Lock } from "lucide-react";
 
 const plans = [
   {
@@ -55,59 +55,103 @@ export default function PricingPage() {
   const [accountId, setAccountId] = useState("");
 
   return (
-    <div className="min-h-screen bg-[#080f1c] flex items-start justify-center pt-10 pb-20 px-4">
-      <div className="w-full max-w-lg flex flex-col gap-0">
+    <div
+      className="min-h-screen flex items-start justify-center pt-10 pb-24 px-4"
+      style={{
+        background: "radial-gradient(ellipse at 30% 0%, #3b0764 0%, #1e0538 40%, #0d0118 100%)",
+      }}
+    >
+      {/* Ambient glow blobs */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-purple-700/20 blur-[120px]" />
+        <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] rounded-full bg-violet-600/15 blur-[100px]" />
+        <div className="absolute bottom-[10%] left-[-5%] w-[300px] h-[300px] rounded-full bg-fuchsia-800/10 blur-[80px]" />
+      </div>
+
+      <div className="relative w-full max-w-lg flex flex-col gap-0 z-10">
 
         {/* Header */}
         <div className="flex items-center gap-2 mb-6 px-1">
-          <Star className="w-5 h-5 text-[#4f6ef7]" fill="#4f6ef7" />
-          <span className="text-white font-bold text-lg tracking-tight">Pro Access</span>
+          <Sparkles className="w-4 h-4 text-purple-300" />
+          <span className="text-white/90 font-semibold text-base tracking-tight">Pro Access</span>
         </div>
 
         {/* ───── FREE PRO SECTION (HERO) ───── */}
-        <div className="rounded-2xl border-2 border-[#1e3a5f] bg-[#0b1929] overflow-hidden shadow-2xl">
+        <div
+          className="rounded-3xl overflow-hidden shadow-2xl"
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            backdropFilter: "blur(40px) saturate(180%)",
+            WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            boxShadow: "0 8px 64px rgba(120,40,200,0.25), inset 0 1px 0 rgba(255,255,255,0.15)",
+          }}
+        >
           {/* Top banner */}
-          <div className="bg-gradient-to-r from-[#0f3460] via-[#112b50] to-[#0f3460] px-6 py-5 border-b border-[#1e3a5f]">
-            <div className="flex items-center gap-3 mb-1">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4f6ef7] to-[#22d3ee] flex items-center justify-center shadow-lg shadow-blue-900/40">
-                <Gift className="w-5 h-5 text-white" />
+          <div
+            className="px-6 py-5"
+            style={{
+              background: "linear-gradient(135deg, rgba(147,51,234,0.35) 0%, rgba(109,40,217,0.2) 100%)",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            <div className="flex items-center gap-4">
+              <div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: "linear-gradient(135deg, rgba(167,139,250,0.5) 0%, rgba(139,92,246,0.6) 100%)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "0 4px 20px rgba(139,92,246,0.4)",
+                }}
+              >
+                <Gift className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-white font-extrabold text-2xl tracking-tight">Get Pro for</span>
-                  <span className="text-2xl font-extrabold bg-gradient-to-r from-[#4ade80] to-[#22d3ee] bg-clip-text text-transparent">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-white font-bold text-2xl tracking-tight">Get Pro for</span>
+                  <span
+                    className="text-2xl font-extrabold"
+                    style={{
+                      background: "linear-gradient(90deg, #e9d5ff, #c4b5fd, #a78bfa)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     FREE
                   </span>
                 </div>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="bg-[#4ade80]/20 text-[#4ade80] text-xs font-bold px-2 py-0.5 rounded-full border border-[#4ade80]/30">
-                    30 Days Included
-                  </span>
-                  <span className="text-[#4a7096] text-xs">No credit card required</span>
-                </div>
+                <p className="text-purple-300/60 text-xs mt-0.5 font-medium">No credit card required</p>
               </div>
             </div>
           </div>
 
           {/* Steps */}
-          <div className="px-6 py-5 flex flex-col gap-5">
+          <div className="px-6 py-6 flex flex-col gap-6">
             {steps.map((step, idx) => (
               <motion.div
                 key={step.num}
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.4 }}
                 className="flex gap-4"
               >
-                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-[#4f6ef7] to-[#7c3aed] flex items-center justify-center shadow-md shadow-indigo-900/40 mt-0.5">
-                  <span className="text-white text-xs font-extrabold">{step.num}</span>
+                <div
+                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(167,139,250,0.6) 0%, rgba(139,92,246,0.7) 100%)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    boxShadow: "0 2px 12px rgba(139,92,246,0.4)",
+                  }}
+                >
+                  <span className="text-white text-xs font-bold">{step.num}</span>
                 </div>
-                <div className="flex-1 flex flex-col gap-1.5">
-                  <span className="text-[#c5d8ef] text-sm leading-snug">{step.label}</span>
+                <div className="flex-1 flex flex-col gap-2">
+                  <span className="text-white/80 text-sm leading-snug">{step.label}</span>
                   {step.action && (
                     <a
                       href={step.action.href}
-                      className="inline-flex items-center gap-1.5 text-[#4f6ef7] hover:text-[#7c9fff] text-sm font-semibold transition-colors duration-150 w-fit"
+                      className="inline-flex items-center gap-1.5 text-purple-300 hover:text-purple-200 text-sm font-semibold transition-colors duration-150 w-fit"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       {step.action.text}
@@ -120,9 +164,29 @@ export default function PricingPage() {
                         placeholder="Enter your Quotex Account ID"
                         value={accountId}
                         onChange={(e) => setAccountId(e.target.value)}
-                        className="flex-1 bg-[#0d1f35] border border-[#1e3a5f] focus:border-[#4f6ef7] rounded-xl px-4 py-2.5 text-white text-sm placeholder-[#2d5070] outline-none transition-colors duration-150"
+                        className="flex-1 rounded-xl px-4 py-2.5 text-white text-sm outline-none transition-all duration-200"
+                        style={{
+                          background: "rgba(255,255,255,0.06)",
+                          border: "1px solid rgba(255,255,255,0.12)",
+                          backdropFilter: "blur(20px)",
+                        }}
+                        onFocus={(e) => {
+                          e.currentTarget.style.border = "1px solid rgba(167,139,250,0.5)";
+                          e.currentTarget.style.background = "rgba(255,255,255,0.09)";
+                        }}
+                        onBlur={(e) => {
+                          e.currentTarget.style.border = "1px solid rgba(255,255,255,0.12)";
+                          e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                        }}
                       />
-                      <button className="bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150 shadow-lg shadow-indigo-900/30">
+                      <button
+                        className="text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(139,92,246,0.8) 0%, rgba(109,40,217,0.9) 100%)",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                          boxShadow: "0 4px 16px rgba(139,92,246,0.3)",
+                        }}
+                      >
                         Submit
                       </button>
                     </div>
@@ -135,33 +199,43 @@ export default function PricingPage() {
           {/* CTA */}
           <div className="px-6 pb-6">
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, opacity: 0.95 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full py-4 rounded-xl font-extrabold text-white text-base bg-gradient-to-r from-[#4ade80] via-[#22d3ee] to-[#4f6ef7] shadow-xl shadow-emerald-900/20 tracking-wide"
+              className="w-full py-4 rounded-2xl font-bold text-white text-base tracking-wide transition-all duration-200"
+              style={{
+                background: "linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #0369a1 100%)",
+                boxShadow: "0 8px 32px rgba(6,182,212,0.35), inset 0 1px 0 rgba(255,255,255,0.2)",
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}
             >
-              ✨ Claim My FREE 30 Days
+              Activate Pro Version
             </motion.button>
             <div className="flex items-center justify-center gap-1.5 mt-3">
-              <Lock className="w-3 h-3 text-[#2d5070]" />
-              <span className="text-[#2d5070] text-[11px]">Secure · No payment needed for free trial</span>
+              <Lock className="w-3 h-3 text-white/20" />
+              <span className="text-white/25 text-[11px]">Secure · No payment needed</span>
             </div>
           </div>
         </div>
 
         {/* ───── DIVIDER ───── */}
         <div className="flex items-center gap-3 px-2 my-5">
-          <div className="flex-1 h-px bg-[#1a2d42]" />
-          <span className="text-[#2d5070] text-xs font-medium tracking-widest uppercase">or</span>
-          <div className="flex-1 h-px bg-[#1a2d42]" />
+          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.07)" }} />
+          <span className="text-white/20 text-xs font-medium tracking-widest uppercase">or</span>
+          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.07)" }} />
         </div>
 
         {/* ───── "I RATHER NOT" BUTTON ───── */}
         <div className="flex flex-col items-center gap-2">
           <motion.button
             onClick={() => setShowPlans((v) => !v)}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full flex items-center justify-between px-6 py-4 rounded-xl border border-[#1e3a5f] bg-[#0b1929]/60 text-[#7a9bbf] hover:text-[#a8c4e0] hover:border-[#2a4a6e] transition-all duration-200 text-sm font-medium"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full flex items-center justify-between px-6 py-4 rounded-2xl text-white/40 hover:text-white/60 transition-all duration-200 text-sm font-medium"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.07)",
+            }}
           >
             <span>I rather not create an account</span>
             <motion.span
@@ -171,7 +245,7 @@ export default function PricingPage() {
               <ChevronDown className="w-4 h-4" />
             </motion.span>
           </motion.button>
-          <p className="text-[#1e3a5f] text-[11px]">Higher pricing applies without an account</p>
+          <p className="text-white/15 text-[11px]">Higher pricing applies without an account</p>
         </div>
 
         {/* ───── PLANS SLIDE DOWN ───── */}
@@ -185,10 +259,22 @@ export default function PricingPage() {
               transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="overflow-hidden"
             >
-              <div className="rounded-2xl border border-[#1e3a5f] bg-[#0b1929] overflow-hidden">
-                <div className="px-5 pt-4 pb-2 border-b border-[#122034]">
-                  <p className="text-[#4a7096] text-xs font-medium tracking-widest uppercase">Select a paid plan</p>
-                  <p className="text-[#2d5070] text-[11px] mt-0.5">No account required · Immediate access</p>
+              <div
+                className="rounded-3xl overflow-hidden"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  backdropFilter: "blur(40px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(40px) saturate(180%)",
+                  border: "1px solid rgba(255,255,255,0.09)",
+                  boxShadow: "0 8px 48px rgba(80,20,150,0.2)",
+                }}
+              >
+                <div
+                  className="px-5 pt-4 pb-3"
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                  <p className="text-purple-300/50 text-xs font-semibold tracking-widest uppercase">Select a plan</p>
+                  <p className="text-white/20 text-[11px] mt-0.5">Immediate access · No account required</p>
                 </div>
 
                 <div className="px-4 py-4 flex flex-col gap-3">
@@ -197,41 +283,67 @@ export default function PricingPage() {
                     return (
                       <motion.button
                         key={plan.id}
-                        initial={{ opacity: 0, y: 16 }}
+                        initial={{ opacity: 0, y: 14 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.08, type: "spring", stiffness: 300, damping: 26 }}
                         onClick={() => setSelectedPlan(plan.id)}
-                        className={`relative w-full text-left rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-                          isSelected
-                            ? "border-[#4f6ef7] bg-[#0f2040]"
-                            : "border-[#122034] bg-[#0b1929] hover:border-[#1e3a5f]"
-                        }`}
+                        className="relative w-full text-left rounded-2xl transition-all duration-200 overflow-hidden"
+                        style={{
+                          background: isSelected
+                            ? "rgba(139,92,246,0.15)"
+                            : "rgba(255,255,255,0.04)",
+                          border: isSelected
+                            ? "1.5px solid rgba(167,139,250,0.5)"
+                            : "1.5px solid rgba(255,255,255,0.07)",
+                          boxShadow: isSelected ? "0 4px 24px rgba(139,92,246,0.15)" : "none",
+                        }}
                       >
                         {plan.best && (
-                          <span className="absolute top-0 right-0 bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] text-white text-[10px] font-bold px-2.5 py-1 rounded-bl-xl tracking-wider">
+                          <span
+                            className="absolute top-0 right-0 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl tracking-wider"
+                            style={{
+                              background: "linear-gradient(135deg, rgba(139,92,246,0.8), rgba(109,40,217,0.9))",
+                            }}
+                          >
                             BEST VALUE
                           </span>
                         )}
-                        <div className="flex items-center justify-between px-4 py-3.5">
+                        <div className="flex items-center justify-between px-4 py-4">
                           <div>
-                            <span className="text-[#4a7096] text-[10px] font-bold tracking-widest uppercase block mb-1">
+                            <span className="text-purple-300/50 text-[10px] font-bold tracking-widest uppercase block mb-1">
                               {plan.label}
                             </span>
                             <div className="flex items-baseline gap-1.5">
                               <span className="text-white text-2xl font-extrabold">{plan.perMonth}</span>
-                              <span className="text-[#2d5070] text-xs">/mo</span>
+                              <span className="text-white/30 text-xs">/mo</span>
                             </div>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className="text-[#2d5070] text-xs line-through">{plan.original}</span>
-                              <span className="text-[#c5d8ef] text-xs font-bold">{plan.sale}</span>
-                              <span className="bg-[#0d2d1a] text-[#4ade80] text-[10px] font-bold px-1.5 py-0.5 rounded border border-[#4ade80]/20">
+                            <div className="flex items-center gap-2 mt-1.5">
+                              <span className="text-white/25 text-xs line-through">{plan.original}</span>
+                              <span className="text-white/70 text-xs font-semibold">{plan.sale}</span>
+                              <span
+                                className="text-[10px] font-bold px-1.5 py-0.5 rounded-md"
+                                style={{
+                                  background: "rgba(167,139,250,0.15)",
+                                  border: "1px solid rgba(167,139,250,0.25)",
+                                  color: "#c4b5fd",
+                                }}
+                              >
                                 Save {plan.save}
                               </span>
                             </div>
                           </div>
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-                            isSelected ? "border-[#4f6ef7] bg-[#4f6ef7]" : "border-[#1e3a5f]"
-                          }`}>
+                          <div
+                            className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                            style={{
+                              background: isSelected
+                                ? "linear-gradient(135deg, #a78bfa, #7c3aed)"
+                                : "transparent",
+                              border: isSelected
+                                ? "1.5px solid rgba(167,139,250,0.8)"
+                                : "1.5px solid rgba(255,255,255,0.15)",
+                              boxShadow: isSelected ? "0 2px 10px rgba(139,92,246,0.4)" : "none",
+                            }}
+                          >
                             {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
                           </div>
                         </div>
@@ -244,16 +356,21 @@ export default function PricingPage() {
                   <motion.button
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.35 }}
-                    whileHover={{ scale: 1.02 }}
+                    transition={{ delay: 0.3 }}
+                    whileHover={{ scale: 1.02, opacity: 0.95 }}
                     whileTap={{ scale: 0.97 }}
-                    className="w-full py-4 rounded-xl font-bold text-white text-sm bg-gradient-to-r from-[#4f6ef7] to-[#7c3aed] shadow-lg shadow-indigo-900/30"
+                    className="w-full py-4 rounded-2xl font-bold text-white text-sm transition-all duration-200"
+                    style={{
+                      background: "linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #0369a1 100%)",
+                      boxShadow: "0 6px 24px rgba(6,182,212,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                    }}
                   >
                     Continue to Payment
                   </motion.button>
                   <div className="flex items-center justify-center gap-1.5 mt-3">
-                    <Lock className="w-3 h-3 text-[#2d5070]" />
-                    <span className="text-[#2d5070] text-[11px]">Secure crypto payment via NOWPayments</span>
+                    <Lock className="w-3 h-3 text-white/15" />
+                    <span className="text-white/20 text-[11px]">Secure crypto payment via NOWPayments</span>
                   </div>
                 </div>
               </div>
