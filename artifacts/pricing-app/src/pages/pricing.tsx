@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, Check, ExternalLink, Sparkles, ChevronDown, Lock } from "lucide-react";
 
@@ -53,6 +53,17 @@ export default function PricingPage() {
   const [showPlans, setShowPlans] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("9month");
   const [accountId, setAccountId] = useState("");
+  const plansRef = useRef<HTMLDivElement>(null);
+
+  const handleTogglePlans = () => {
+    const opening = !showPlans;
+    setShowPlans(opening);
+    if (opening) {
+      setTimeout(() => {
+        plansRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }
+  };
 
   return (
     <div
@@ -227,7 +238,7 @@ export default function PricingPage() {
         {/* ───── "I RATHER NOT" BUTTON ───── */}
         <div className="flex flex-col items-center gap-2">
           <motion.button
-            onClick={() => setShowPlans((v) => !v)}
+            onClick={handleTogglePlans}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             className="w-full flex items-center justify-between px-6 py-4 rounded-2xl text-white/35 hover:text-white/55 transition-all duration-200 text-sm font-medium"
@@ -253,6 +264,7 @@ export default function PricingPage() {
           {showPlans && (
             <motion.div
               key="plans"
+              ref={plansRef}
               initial={{ opacity: 0, height: 0, marginTop: 0 }}
               animate={{ opacity: 1, height: "auto", marginTop: 16 }}
               exit={{ opacity: 0, height: 0, marginTop: 0 }}
