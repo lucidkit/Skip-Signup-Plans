@@ -42,7 +42,7 @@ export default function HomePage() {
         >
           <div className="flex items-center gap-3">
             <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center"
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
               style={{
                 background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                 border: "1px solid rgba(255,255,255,0.20)",
@@ -158,7 +158,7 @@ export default function HomePage() {
 
             <div className="flex items-center gap-3 mb-8">
               <button
-                className="px-6 py-3 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
+                className="px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.15)",
@@ -169,7 +169,7 @@ export default function HomePage() {
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
-                className="px-6 py-3 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
+                className="px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.10)",
@@ -205,7 +205,7 @@ export default function HomePage() {
               <img
                 src="/hero-trader.png"
                 alt="Trading mentor"
-                className="relative z-10 w-full max-w-2xl rounded-lg"
+                className="relative z-10 w-full max-w-2xl rounded-2xl"
                 style={{
                   filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.5))",
                 }}
@@ -220,7 +220,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-lg grid grid-cols-2 md:grid-cols-4"
+          className="rounded-2xl grid grid-cols-2 md:grid-cols-4"
           style={solidCard}
         >
           {[
@@ -301,7 +301,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.45 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-lg overflow-hidden"
+              className="rounded-2xl overflow-hidden"
               style={{
                 background: "rgba(255,255,255,0.04)",
                 border: `1px solid ${feature.borderColor}`,
@@ -309,7 +309,7 @@ export default function HomePage() {
             >
               <div className="p-5" style={{ background: feature.gradient }}>
                 <div
-                  className="w-11 h-11 rounded-lg flex items-center justify-center mb-4"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
                   style={{
                     background: feature.iconBg,
                     border: "1px solid rgba(255,255,255,0.25)",
@@ -332,14 +332,14 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="rounded-lg overflow-hidden text-center py-12 px-6"
+          className="rounded-2xl overflow-hidden text-center py-12 px-6"
           style={{
             border: "1px solid rgba(77,167,204,0.15)",
             background: "linear-gradient(135deg, rgba(77,167,204,0.08) 0%, rgba(77,167,204,0.04) 50%, rgba(255,255,255,0.04) 100%)",
           }}
         >
           <div
-            className="w-14 h-14 rounded-lg flex items-center justify-center mx-auto mb-5"
+            className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5"
             style={{
               background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
               border: "1px solid rgba(255,255,255,0.25)",
@@ -357,7 +357,7 @@ export default function HomePage() {
           </p>
           <div className="flex items-center justify-center gap-3">
             <button
-              className="px-8 py-3 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
+              className="px-8 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
               style={{
                 background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                 border: "1px solid rgba(255,255,255,0.20)",
@@ -379,7 +379,7 @@ export default function HomePage() {
         >
           <div className="flex items-center gap-2">
             <div
-              className="w-7 h-7 rounded-lg flex items-center justify-center"
+              className="w-7 h-7 rounded-xl flex items-center justify-center"
               style={{
                 background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                 border: "1px solid rgba(255,255,255,0.15)",

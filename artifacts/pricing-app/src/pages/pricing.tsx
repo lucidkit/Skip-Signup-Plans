@@ -125,7 +125,7 @@ export default function PricingPage() {
             style={{ pointerEvents: "none", width: "min(480px, 92vw)" }}
           >
             <div
-              className="rounded-lg overflow-hidden"
+              className="rounded-2xl overflow-hidden"
               style={{
                 boxShadow: "0 24px 64px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.10)",
               }}
@@ -149,7 +149,7 @@ export default function PricingPage() {
         </div>
 
         <div
-          className="rounded-lg overflow-hidden"
+          className="rounded-2xl overflow-hidden"
           style={{
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(255,255,255,0.10)",
@@ -164,7 +164,7 @@ export default function PricingPage() {
           >
             <div className="flex items-center gap-4">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.18)",
@@ -250,7 +250,7 @@ export default function PricingPage() {
                               value={accountId}
                               onChange={(e) => setAccountId(e.target.value)}
                               disabled={status === "checking"}
-                              className="min-w-0 flex-1 rounded-lg px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-[#6b7280]"
+                              className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-[#6b7280]"
                               style={{
                                 background: "rgba(255,255,255,0.04)",
                                 border: "1px solid rgba(255,255,255,0.10)",
@@ -323,7 +323,7 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
+                            className="rounded-xl px-4 py-4 flex flex-col gap-2"
                             style={{
                               background: "rgba(44,217,123,0.10)",
                               border: "1px solid rgba(44,217,123,0.30)",
@@ -348,7 +348,7 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
+                            className="rounded-xl px-4 py-4 flex flex-col gap-2"
                             style={{
                               background: "rgba(239,68,68,0.08)",
                               border: "1px solid rgba(239,68,68,0.25)",
@@ -364,7 +364,7 @@ export default function PricingPage() {
                             <div className="flex gap-2 mt-1">
                               <button
                                 onClick={handleRetry}
-                                className="flex-1 py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+                                className="flex-1 py-2.5 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
                                 style={{
                                   background: "rgba(239,68,68,0.15)",
                                   border: "1px solid rgba(239,68,68,0.20)",
@@ -374,7 +374,7 @@ export default function PricingPage() {
                                 Try Again
                               </button>
                               <button
-                                className="flex-1 py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+                                className="flex-1 py-2.5 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
                                 style={{
                                   background: "rgba(77,167,204,0.10)",
                                   border: "1px solid rgba(77,167,204,0.22)",
@@ -396,7 +396,7 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
+                            className="rounded-xl px-4 py-4 flex flex-col gap-2"
                             style={{
                               background: "rgba(245,158,11,0.08)",
                               border: "1px solid rgba(245,158,11,0.25)",
@@ -411,7 +411,7 @@ export default function PricingPage() {
                             </p>
                             <button
                               onClick={handleRetry}
-                              className="mt-1 w-full py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
                               style={{
                                 background: "rgba(245,158,11,0.12)",
                                 border: "1px solid rgba(245,158,11,0.20)",
@@ -432,7 +432,7 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
+                            className="rounded-xl px-4 py-4 flex flex-col gap-2"
                             style={{
                               background: "rgba(77,167,204,0.08)",
                               border: "1px solid rgba(77,167,204,0.25)",
@@ -447,7 +447,7 @@ export default function PricingPage() {
                             </p>
                             <button
                               onClick={handleRetry}
-                              className="mt-1 w-full py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
+                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
                               style={{
                                 background: "rgba(77,167,204,0.12)",
                                 border: "1px solid rgba(77,167,204,0.20)",
@@ -471,7 +471,7 @@ export default function PricingPage() {
             <motion.button
               whileHover={{ scale: 1.02, opacity: 0.95 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full py-4 rounded-lg font-bold text-white text-base tracking-wide transition-all duration-200"
+              className="w-full py-4 rounded-xl font-bold text-white text-base tracking-wide transition-all duration-200"
               style={{
                 background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                 border: "1px solid rgba(255,255,255,0.15)",
@@ -497,7 +497,7 @@ export default function PricingPage() {
             onClick={handleTogglePlans}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full flex items-center justify-between px-6 py-4 rounded-lg text-[#9ca3af] hover:text-[#b8bcc8] transition-all duration-200 text-sm font-medium"
+            className="w-full flex items-center justify-between px-6 py-4 rounded-xl text-[#9ca3af] hover:text-[#b8bcc8] transition-all duration-200 text-sm font-medium"
             style={{
               background: "rgba(255,255,255,0.03)",
               border: "1px solid rgba(255,255,255,0.10)",
@@ -540,7 +540,7 @@ export default function PricingPage() {
               className="overflow-hidden"
             >
               <div
-                className="rounded-lg overflow-hidden"
+                className="rounded-2xl overflow-hidden"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.10)",
@@ -569,7 +569,7 @@ export default function PricingPage() {
                           ease: [0.16, 1, 0.3, 1],
                         }}
                         onClick={() => setSelectedPlan(plan.id)}
-                        className="relative w-full text-left rounded-lg transition-all duration-200 overflow-hidden"
+                        className="relative w-full text-left rounded-xl transition-all duration-200 overflow-hidden"
                         style={{
                           background: isSelected
                             ? "rgba(77,167,204,0.12)"
@@ -581,7 +581,7 @@ export default function PricingPage() {
                       >
                         {plan.best && (
                           <span
-                            className="absolute top-0 right-0 text-white text-[10px] font-bold px-3 py-1 rounded-bl-md tracking-wider"
+                            className="absolute top-0 right-0 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg tracking-wider"
                             style={{
                               background: "linear-gradient(135deg, #4da7cc, #357a99)",
                             }}
@@ -639,7 +639,7 @@ export default function PricingPage() {
                     transition={{ delay: 0.3 }}
                     whileHover={{ scale: 1.02, opacity: 0.95 }}
                     whileTap={{ scale: 0.97 }}
-                    className="w-full py-4 rounded-lg font-bold text-white text-sm transition-all duration-200"
+                    className="w-full py-4 rounded-xl font-bold text-white text-sm transition-all duration-200"
                     style={{
                       background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                       border: "1px solid rgba(255,255,255,0.14)",

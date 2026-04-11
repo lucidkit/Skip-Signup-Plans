@@ -159,7 +159,7 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-lg overflow-hidden"
+          className="rounded-2xl overflow-hidden"
           style={solidCard}
         >
           <div
@@ -171,7 +171,7 @@ export default function ProfilePage() {
             <div className="flex items-center gap-5">
               <div className="relative">
                 <div
-                  className="w-14 h-14 rounded-lg flex items-center justify-center text-xl font-bold text-white flex-shrink-0"
+                  className="w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold text-white flex-shrink-0"
                   style={{
                     background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                     border: "1px solid rgba(255,255,255,0.18)",
@@ -260,7 +260,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-2 rounded-lg overflow-hidden flex flex-col"
+            className="md:col-span-2 rounded-2xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(77,167,204,0.15)",
@@ -274,7 +274,7 @@ export default function ProfilePage() {
               }}
             >
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
                   border: "1px solid rgba(255,255,255,0.25)",
@@ -303,7 +303,7 @@ export default function ProfilePage() {
                   <span className="text-[#9ca3af] text-xs">/lifetime</span>
                 </div>
                 <button
-                  className="w-full py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.97]"
+                  className="w-full py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.97]"
                   style={{
                     background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                     border: "1px solid rgba(255,255,255,0.20)",
@@ -321,7 +321,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-3 rounded-lg overflow-hidden flex flex-col"
+            className="md:col-span-3 rounded-2xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(77,167,204,0.15)",
@@ -336,7 +336,7 @@ export default function ProfilePage() {
             >
               <div className="flex items-center gap-3">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
                     background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
                     border: "1px solid rgba(255,255,255,0.25)",
@@ -367,7 +367,7 @@ export default function ProfilePage() {
                 ].map((feat) => (
                   <div
                     key={feat.label}
-                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg"
+                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl"
                     style={{
                       background: "rgba(77,167,204,0.04)",
                       border: "1px solid rgba(77,167,204,0.10)",
@@ -399,7 +399,7 @@ export default function ProfilePage() {
                     SAVE $77/yr
                   </span>
                   <button
-                    className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-[0.97]"
+                    className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-[0.97]"
                     style={{
                       background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                       border: "1px solid rgba(255,255,255,0.20)",
@@ -420,12 +420,12 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-lg overflow-hidden flex flex-col"
+            className="rounded-2xl overflow-hidden flex flex-col"
             style={solidCard}
           >
             <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.18)",
@@ -449,7 +449,7 @@ export default function ProfilePage() {
                     placeholder="Your full name"
                     value={profile.fullName}
                     onChange={(e) => updateField("fullName", e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
+                    className="w-full px-3 py-2 rounded-xl text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
                     style={inputStyle}
                   />
                 </div>
@@ -462,7 +462,7 @@ export default function ProfilePage() {
                     placeholder="your@email.com"
                     value={profile.email}
                     onChange={(e) => updateField("email", e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
+                    className="w-full px-3 py-2 rounded-xl text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
                     style={inputStyle}
                   />
                 </div>
@@ -475,7 +475,7 @@ export default function ProfilePage() {
                     placeholder="+1 (555) 123-4567"
                     value={profile.phone}
                     onChange={(e) => updateField("phone", e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
+                    className="w-full px-3 py-2 rounded-xl text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
                     style={inputStyle}
                   />
                 </div>
@@ -488,7 +488,7 @@ export default function ProfilePage() {
                     placeholder="https://yoursite.com"
                     value={profile.website}
                     onChange={(e) => updateField("website", e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
+                    className="w-full px-3 py-2 rounded-xl text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
                     style={inputStyle}
                   />
                 </div>
@@ -503,13 +503,13 @@ export default function ProfilePage() {
                   placeholder="https://example.com/photo.jpg"
                   value={profile.avatarUrl}
                   onChange={(e) => updateField("avatarUrl", e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
+                  className="w-full px-3 py-2 rounded-xl text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
                   style={inputStyle}
                 />
               </div>
 
               <div
-                className="mt-1 p-3 rounded-lg"
+                className="mt-1 p-3 rounded-xl"
                 style={{
                   background: "rgba(77,167,204,0.08)",
                   border: "1px solid rgba(77,167,204,0.15)",
@@ -524,11 +524,11 @@ export default function ProfilePage() {
                     placeholder="Enter your Pocket Option UID"
                     value={profile.uid}
                     onChange={(e) => updateField("uid", e.target.value)}
-                    className="flex-1 min-w-0 px-3 py-2 rounded-lg text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
+                    className="flex-1 min-w-0 px-3 py-2 rounded-xl text-white text-xs placeholder:text-[#6b7280] outline-none focus:ring-1 focus:ring-[#4da7cc]/40"
                     style={inputStyle}
                   />
                   <button
-                    className="px-3 py-2 rounded-lg text-white text-xs font-semibold flex-shrink-0 transition-all active:scale-[0.97]"
+                    className="px-3 py-2 rounded-xl text-white text-xs font-semibold flex-shrink-0 transition-all active:scale-[0.97]"
                     style={{
                       background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                       border: "1px solid rgba(255,255,255,0.12)",
@@ -540,7 +540,7 @@ export default function ProfilePage() {
               </div>
 
               <button
-                className="w-full mt-auto py-2.5 rounded-lg text-white text-xs font-semibold transition-all active:scale-[0.98]"
+                className="w-full mt-auto py-2.5 rounded-xl text-white text-xs font-semibold transition-all active:scale-[0.98]"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.12)",
@@ -555,7 +555,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-lg overflow-hidden flex flex-col"
+            className="rounded-2xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(77,167,204,0.15)",
@@ -570,7 +570,7 @@ export default function ProfilePage() {
             >
               <div className="flex items-center gap-3">
                 <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
                     background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
                     border: "1px solid rgba(255,255,255,0.25)",
@@ -583,7 +583,7 @@ export default function ProfilePage() {
             </div>
             <div className="px-5 py-4 flex-1 flex flex-col">
               <div
-                className="rounded-lg p-4 mb-4"
+                className="rounded-xl p-4 mb-4"
                 style={{
                   background: "rgba(77,167,204,0.04)",
                   border: "1px solid rgba(77,167,204,0.08)",
@@ -621,7 +621,7 @@ export default function ProfilePage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-lg px-2 py-2 text-center"
+                    className="rounded-xl px-2 py-2 text-center"
                     style={{
                       background: "rgba(255,255,255,0.03)",
                       border: "1px solid rgba(255,255,255,0.10)",
@@ -638,7 +638,7 @@ export default function ProfilePage() {
               </p>
 
               <button
-                className="w-full mt-auto py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.97]"
+                className="w-full mt-auto py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.97]"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.20)",
@@ -656,7 +656,7 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-lg overflow-hidden relative"
+          className="rounded-2xl overflow-hidden relative"
           style={{
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(77,167,204,0.15)",
@@ -671,7 +671,7 @@ export default function ProfilePage() {
           >
             <div className="flex items-center gap-3">
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
                   border: "1px solid rgba(255,255,255,0.25)",
@@ -699,14 +699,14 @@ export default function ProfilePage() {
                 ].map((course) => (
                   <div
                     key={course.title}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl"
                     style={{
                       background: "rgba(77,167,204,0.04)",
                       border: "1px solid rgba(77,167,204,0.08)",
                     }}
                   >
                     <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{
                         background: course.type === "video"
                           ? "rgba(77,167,204,0.15)"
@@ -731,7 +731,7 @@ export default function ProfilePage() {
 
             <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
               <div
-                className="w-16 h-16 rounded-lg flex items-center justify-center mb-3"
+                className="w-16 h-16 rounded-xl flex items-center justify-center mb-3"
                 style={{
                   background: "linear-gradient(135deg, rgba(77,167,204,0.25) 0%, rgba(77,167,204,0.20) 100%)",
                   border: "1px solid rgba(77,167,204,0.30)",
@@ -744,7 +744,7 @@ export default function ProfilePage() {
                 Purchase a mentorship plan to access Pro, Elite & Monster trading courses with lifetime access
               </p>
               <button
-                className="px-6 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
+                className="px-6 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
                 style={{
                   background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.20)",
