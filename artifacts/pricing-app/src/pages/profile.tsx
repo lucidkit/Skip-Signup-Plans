@@ -159,7 +159,7 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-2xl overflow-hidden"
+          className="rounded-3xl overflow-hidden"
           style={solidCard}
         >
           <div
@@ -260,7 +260,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-2 rounded-2xl overflow-hidden flex flex-col"
+            className="md:col-span-2 rounded-3xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(250,204,21,0.15)",
@@ -321,7 +321,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-3 rounded-2xl overflow-hidden flex flex-col"
+            className="md:col-span-3 rounded-3xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(250,204,21,0.15)",
@@ -420,7 +420,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl overflow-hidden flex flex-col"
+            className="rounded-3xl overflow-hidden flex flex-col"
             style={solidCard}
           >
             <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
@@ -555,7 +555,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl overflow-hidden flex flex-col"
+            className="rounded-3xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid rgba(250,204,21,0.15)",
@@ -656,7 +656,7 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-2xl overflow-hidden relative"
+          className="rounded-3xl overflow-hidden relative"
           style={{
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(250,204,21,0.15)",

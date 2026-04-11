@@ -125,7 +125,7 @@ export default function PricingPage() {
             style={{ pointerEvents: "none", width: "min(480px, 92vw)" }}
           >
             <div
-              className="rounded-2xl overflow-hidden"
+              className="rounded-3xl overflow-hidden"
               style={{
                 boxShadow: "0 24px 64px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.10)",
               }}
@@ -149,7 +149,7 @@ export default function PricingPage() {
         </div>
 
         <div
-          className="rounded-2xl overflow-hidden"
+          className="rounded-3xl overflow-hidden"
           style={{
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(255,255,255,0.10)",
@@ -540,7 +540,7 @@ export default function PricingPage() {
               className="overflow-hidden"
             >
               <div
-                className="rounded-2xl overflow-hidden"
+                className="rounded-3xl overflow-hidden"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.10)",
