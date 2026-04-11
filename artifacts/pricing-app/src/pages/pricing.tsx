@@ -165,10 +165,10 @@ export default function PricingPage() {
                     <div className="flex gap-2 mt-1">
                       <input
                         type="text"
-                        placeholder="Enter your Pocket Option UID"
+                        placeholder="Your Pocket Option UID"
                         value={accountId}
                         onChange={(e) => setAccountId(e.target.value)}
-                        className="min-w-0 flex-1 rounded-xl px-4 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
+                        className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
                         style={{
                           background: "rgba(255,255,255,0.05)",
                           border: "1px solid rgba(255,255,255,0.10)",
@@ -184,7 +184,7 @@ export default function PricingPage() {
                         }}
                       />
                       <button
-                        className="flex-shrink-0 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
+                        className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
                         style={{
                           background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
                           border: "1px solid rgba(255,255,255,0.15)",
