@@ -1,17 +1,21 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Check, ExternalLink, Sparkles, ChevronDown, Lock, CheckCircle2, XCircle } from "lucide-react";
+import { BookOpen, Check, ExternalLink, Sparkles, ChevronDown, Lock, CheckCircle2, XCircle, AlertCircle, ShieldAlert } from "lucide-react";
+
+type VerifyResult = "success" | "error" | "no_deposit" | "no_verification";
 
 // ── Backend hook ─────────────────────────────────────────────────────────────
 // Replace this function with a real API call when the backend is ready.
-// It should return { valid: boolean }.
-async function verifyAccountUID(uid: string): Promise<{ valid: boolean }> {
+// Return one of: "success" | "error" | "no_deposit" | "no_verification"
+async function verifyAccountUID(uid: string): Promise<{ status: VerifyResult }> {
   // TODO: replace with real API call, e.g.:
   // const res = await fetch("/api/verify-uid", { method: "POST", body: JSON.stringify({ uid }) });
-  // return res.json();
-  if (uid === "111") return { valid: true };
-  if (uid === "222") return { valid: false };
-  return { valid: false };
+  // return res.json(); // expects { status: VerifyResult }
+  if (uid === "111") return { status: "success" };
+  if (uid === "222") return { status: "error" };
+  if (uid === "333") return { status: "no_deposit" };
+  if (uid === "444") return { status: "no_verification" };
+  return { status: "error" };
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -67,7 +71,7 @@ export default function PricingPage() {
   const [selectedPlan, setSelectedPlan] = useState("9month");
   const [accountId, setAccountId] = useState("");
   const [progress, setProgress] = useState(0);
-  const [status, setStatus] = useState<"idle" | "checking" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "checking" | VerifyResult>("idle");
   const [showUidTooltip, setShowUidTooltip] = useState(false);
 
   const handleSubmit = async () => {
@@ -85,7 +89,7 @@ export default function PricingPage() {
     // Phase 3: after bar finishes, call backend & show result
     setTimeout(async () => {
       const result = await verifyAccountUID(accountId.trim());
-      setStatus(result.valid ? "success" : "error");
+      setStatus(result.status);
     }, fillDone);
   };
 
@@ -259,7 +263,7 @@ export default function PricingPage() {
 
                       {/* Input row — hidden after result */}
                       <AnimatePresence initial={false}>
-                        {status !== "success" && status !== "error" && (
+                        {(status === "idle" || status === "checking") && (
                           <motion.div
                             key="input-row"
                             initial={{ opacity: 0 }}
