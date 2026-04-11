@@ -6,9 +6,6 @@ import NotFound from "@/pages/not-found";
 import PricingPage from "@/pages/pricing";
 import ProfilePage from "@/pages/profile";
 import HomePage from "@/pages/home";
-import PricingGlassPage from "@/pages/pricing-glass";
-import ProfileGlassPage from "@/pages/profile-glass";
-import HomeGlassPage from "@/pages/home-glass";
 
 const queryClient = new QueryClient();
 
@@ -18,9 +15,6 @@ function Router() {
       <Route path="/" component={PricingPage} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/home" component={HomePage} />
-      <Route path="/pricing-glass" component={PricingGlassPage} />
-      <Route path="/profile-glass" component={ProfileGlassPage} />
-      <Route path="/home-glass" component={HomeGlassPage} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,36 @@
+┌────────────────────────────────────────┬─────────┬────────────────────────────────────┐
+  │                  Name                  │   Hex   │                Use                 │                                 
+  ├────────────────────────────────────────┼─────────┼────────────────────────────────────┤
+  │ --color-accent-green / --color-success │ #2cd97b │ Stats, wins, positive numbers only │
+  ├────────────────────────────────────────┼─────────┼────────────────────────────────────┤
+  │ --color-accent-blue                    │ #398ffc │ Links, external                    │                                 
+  ├────────────────────────────────────────┼─────────┼────────────────────────────────────┤
+  │ --color-error                          │ #EF4444 │ Errors, losses                     │                                 
+  ├────────────────────────────────────────┼─────────┼────────────────────────────────────┤                                 
+  │ --color-warning                        │ #F59E0B │ Warnings                           │                                 
+  └────────────────────────────────────────┴─────────┴────────────────────────────────────┘                                 
+                                                                                                                            
+  Text                                                      
+                                                                                                                            
+  ┌────────────────────────┬─────────┬─────────────────┐
+  │          Name          │   Hex   │       Use       │                                                                    
+  ├────────────────────────┼─────────┼─────────────────┤    
+  │ --color-text-primary   │ #ffffff │ Headings        │
+  ├────────────────────────┼─────────┼─────────────────┤
+  │ --color-text-secondary │ #b8bcc8 │ Body text       │
+  ├────────────────────────┼─────────┼─────────────────┤
+  │ --color-text-muted     │ #9ca3af │ Labels          │
+  ├────────────────────────┼─────────┼─────────────────┤                                                                    
+  │ --color-text-tertiary  │ #6b7280 │ Meta / captions │
+  └────────────────────────┴─────────┴─────────────────┘                                                                    
+                                                                                                                            
+  Borders
+                                                                                                                            
+  | --color-border-light | rgba(255,255,255,0.1) | Standard card borders |
+                                          
+  Rules (from design system):                 
+  - Dark navy only — never light backgrounds                                                                                
+  - Teal gradient = CTAs / brand              
+  - Green = only for stats, success, positive numbers (never for buttons)                                                   
+  - Sharp corners (4–6px radius max)                                     
+  - Minimal shadows, glassmorphism preferred

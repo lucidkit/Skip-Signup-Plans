@@ -4,20 +4,13 @@ import { BookOpen, Check, ExternalLink, Sparkles, ChevronDown, Lock, CheckCircle
 
 type VerifyResult = "success" | "error" | "no_deposit" | "no_verification";
 
-// ── Backend hook ─────────────────────────────────────────────────────────────
-// Replace this function with a real API call when the backend is ready.
-// Return one of: "success" | "error" | "no_deposit" | "no_verification"
 async function verifyAccountUID(uid: string): Promise<{ status: VerifyResult }> {
-  // TODO: replace with real API call, e.g.:
-  // const res = await fetch("/api/verify-uid", { method: "POST", body: JSON.stringify({ uid }) });
-  // return res.json(); // expects { status: VerifyResult }
   if (uid === "111") return { status: "success" };
   if (uid === "222") return { status: "error" };
   if (uid === "333") return { status: "no_deposit" };
   if (uid === "444") return { status: "no_verification" };
   return { status: "error" };
 }
-// ─────────────────────────────────────────────────────────────────────────────
 
 const plans = [
   {
@@ -79,14 +72,11 @@ export default function PricingPage() {
     setStatus("checking");
     setProgress(0);
 
-    // Phase 1: rush to 80% fast
     setTimeout(() => setProgress(80), 30);
 
-    // Phase 2: pause 150ms at 80%, then fill to 100%
-    const fillDone = 30 + 150 + 400; // ~580ms total
+    const fillDone = 30 + 150 + 400;
     setTimeout(() => setProgress(100), 30 + 150);
 
-    // Phase 3: after bar finishes, call backend & show result
     setTimeout(async () => {
       const result = await verifyAccountUID(accountId.trim());
       setStatus(result.status);
@@ -120,10 +110,9 @@ export default function PricingPage() {
     <div
       className="min-h-screen flex items-start justify-center pt-10 pb-24 px-4"
       style={{
-        background: "radial-gradient(ellipse at 30% 0%, #0c1e3d 0%, #07111f 55%, #030810 100%)",
+        background: "#0e1338",
       }}
     >
-      {/* UID tooltip image — fixed overlay */}
       <AnimatePresence>
         {showUidTooltip && (
           <motion.div
@@ -136,9 +125,9 @@ export default function PricingPage() {
             style={{ pointerEvents: "none", width: "min(480px, 92vw)" }}
           >
             <div
-              className="rounded-2xl overflow-hidden"
+              className="rounded-lg overflow-hidden"
               style={{
-                boxShadow: "0 24px 64px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.12)",
+                boxShadow: "0 24px 64px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.10)",
               }}
             >
               <img
@@ -147,53 +136,38 @@ export default function PricingPage() {
                 style={{ width: "100%", display: "block" }}
               />
             </div>
-            <p className="text-center text-white/35 text-[11px] mt-2">Your UID is shown in your profile</p>
+            <p className="text-center text-[#6b7280] text-[11px] mt-2">Your UID is shown in your profile</p>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Ambient glow blobs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[130px]" />
-        <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] rounded-full bg-cyan-700/8 blur-[110px]" />
-        <div className="absolute bottom-[10%] left-[-5%] w-[300px] h-[300px] rounded-full bg-indigo-800/10 blur-[90px]" />
-      </div>
-
       <div className="relative w-full max-w-lg flex flex-col gap-0 z-10">
 
-        {/* Header */}
         <div ref={topRef} className="flex items-center gap-2 mb-6 px-1">
-          <Sparkles className="w-4 h-4 text-blue-300/80" />
-          <span className="text-white/90 font-semibold text-base tracking-tight">Pro Access</span>
+          <Sparkles className="w-4 h-4" style={{ color: "#4da7cc" }} />
+          <span className="text-white font-semibold text-base tracking-tight">Pro Access</span>
         </div>
 
-        {/* ───── FREE PRO SECTION (HERO) ───── */}
         <div
-          className="rounded-3xl overflow-hidden shadow-2xl"
+          className="rounded-lg overflow-hidden"
           style={{
-            background: "rgba(255,255,255,0.05)",
-            backdropFilter: "blur(40px) saturate(180%)",
-            WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(255,255,255,0.10)",
-            boxShadow: "0 8px 64px rgba(30,80,200,0.18), inset 0 1px 0 rgba(255,255,255,0.12)",
           }}
         >
-          {/* Top banner */}
           <div
             className="px-6 py-5"
             style={{
-              background: "linear-gradient(135deg, rgba(29,78,216,0.30) 0%, rgba(14,52,145,0.18) 100%)",
-              borderBottom: "1px solid rgba(255,255,255,0.07)",
+              background: "linear-gradient(135deg, rgba(77,167,204,0.20) 0%, rgba(53,122,153,0.12) 100%)",
+              borderBottom: "1px solid rgba(255,255,255,0.10)",
             }}
           >
             <div className="flex items-center gap-4">
               <div
-                className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+                className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: "linear-gradient(135deg, rgba(96,165,250,0.45) 0%, rgba(59,130,246,0.55) 100%)",
-                  backdropFilter: "blur(20px)",
+                  background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                   border: "1px solid rgba(255,255,255,0.18)",
-                  boxShadow: "0 4px 20px rgba(59,130,246,0.35)",
                 }}
               >
                 <BookOpen className="w-6 h-6 text-white" />
@@ -202,12 +176,11 @@ export default function PricingPage() {
                 <div className="flex items-baseline gap-2">
                   <span className="text-white font-bold text-xl tracking-tight leading-tight whitespace-nowrap">Get Pro Journal (Full Version)</span>
                 </div>
-                <p className="text-blue-300/55 text-xs mt-1 font-medium">No Payment Required !</p>
+                <p className="text-[#9ca3af] text-xs mt-1 font-medium">No Payment Required!</p>
               </div>
             </div>
           </div>
 
-          {/* Steps */}
           <div className="px-6 py-6 flex flex-col gap-6">
             {steps.map((step, idx) => (
               <motion.div
@@ -220,25 +193,25 @@ export default function PricingPage() {
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
                   style={{
-                    background: "linear-gradient(135deg, rgba(96,165,250,0.55) 0%, rgba(59,130,246,0.65) 100%)",
+                    background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                     border: "1px solid rgba(255,255,255,0.18)",
-                    boxShadow: "0 2px 12px rgba(59,130,246,0.35)",
                   }}
                 >
                   <span className="text-white text-xs font-bold">{step.num}</span>
                 </div>
                 <div className="flex-1 flex flex-col gap-2">
                   {step.input ? (
-                    <span className="text-white/80 text-sm leading-snug">
+                    <span className="text-[#b8bcc8] text-sm leading-snug">
                       Enter your account UID below{" "}
                       <button
                         onMouseEnter={() => setShowUidTooltip(true)}
                         onMouseLeave={() => setShowUidTooltip(false)}
                         onClick={() => setShowUidTooltip(v => !v)}
-                        className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black text-blue-200 align-middle select-none"
+                        className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black align-middle select-none"
                         style={{
-                          background: "rgba(96,165,250,0.25)",
-                          border: "1px solid rgba(96,165,250,0.4)",
+                          background: "rgba(77,167,204,0.25)",
+                          border: "1px solid rgba(77,167,204,0.4)",
+                          color: "#65d1cc",
                           lineHeight: 1,
                           cursor: "default",
                         }}
@@ -247,12 +220,13 @@ export default function PricingPage() {
                       </button>
                     </span>
                   ) : (
-                    <span className="text-white/80 text-sm leading-snug">{step.label}</span>
+                    <span className="text-[#b8bcc8] text-sm leading-snug">{step.label}</span>
                   )}
                   {step.action && (
                     <a
                       href={step.action.href}
-                      className="inline-flex items-center gap-1.5 text-blue-300 hover:text-blue-200 text-sm font-semibold transition-colors duration-150 w-fit"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-150 w-fit"
+                      style={{ color: "#398ffc" }}
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       {step.action.text}
@@ -261,7 +235,6 @@ export default function PricingPage() {
                   {step.input && (
                     <div className="flex flex-col gap-2 mt-1">
 
-                      {/* Input row — hidden after result */}
                       <AnimatePresence initial={false}>
                         {(status === "idle" || status === "checking") && (
                           <motion.div
@@ -277,30 +250,28 @@ export default function PricingPage() {
                               value={accountId}
                               onChange={(e) => setAccountId(e.target.value)}
                               disabled={status === "checking"}
-                              className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
+                              className="min-w-0 flex-1 rounded-lg px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-[#6b7280]"
                               style={{
-                                background: "rgba(255,255,255,0.05)",
+                                background: "rgba(255,255,255,0.04)",
                                 border: "1px solid rgba(255,255,255,0.10)",
-                                backdropFilter: "blur(20px)",
                                 opacity: status === "checking" ? 0.5 : 1,
                               }}
                               onFocus={(e) => {
-                                e.currentTarget.style.border = "1px solid rgba(96,165,250,0.45)";
-                                e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                                e.currentTarget.style.border = "1px solid rgba(77,167,204,0.45)";
+                                e.currentTarget.style.background = "rgba(255,255,255,0.06)";
                               }}
                               onBlur={(e) => {
                                 e.currentTarget.style.border = "1px solid rgba(255,255,255,0.10)";
-                                e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
                               }}
                             />
                             <button
                               onClick={handleSubmit}
                               disabled={status === "checking"}
-                              className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-opacity duration-150"
+                              className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition-opacity duration-150"
                               style={{
-                                background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
+                                background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                                 border: "1px solid rgba(255,255,255,0.15)",
-                                boxShadow: "0 4px 16px rgba(59,130,246,0.25)",
                                 opacity: status === "checking" ? 0.5 : 1,
                               }}
                             >
@@ -310,7 +281,6 @@ export default function PricingPage() {
                         )}
                       </AnimatePresence>
 
-                      {/* Progress bar — shown while checking */}
                       <AnimatePresence>
                         {status === "checking" && (
                           <motion.div
@@ -322,8 +292,8 @@ export default function PricingPage() {
                             className="flex flex-col gap-1.5"
                           >
                             <div className="flex items-center justify-between">
-                              <span className="text-blue-300/55 text-[11px] font-medium">Checking your account...</span>
-                              <span className="text-blue-300/70 text-[11px] font-bold tabular-nums">{progress}%</span>
+                              <span className="text-[#9ca3af] text-[11px] font-medium">Checking your account...</span>
+                              <span className="text-[#4da7cc] text-[11px] font-bold tabular-nums">{progress}%</span>
                             </div>
                             <div
                               className="w-full rounded-full overflow-hidden"
@@ -333,9 +303,8 @@ export default function PricingPage() {
                                 style={{
                                   height: "100%",
                                   width: `${progress}%`,
-                                  background: "linear-gradient(90deg, #06b6d4, #3b82f6)",
+                                  background: "linear-gradient(90deg, #4da7cc, #65d1cc)",
                                   borderRadius: "9999px",
-                                  boxShadow: "0 0 10px rgba(6,182,212,0.65)",
                                   transition: progress <= 80
                                     ? "width 0.38s cubic-bezier(0.16,1,0.3,1)"
                                     : "width 0.42s cubic-bezier(0.16,1,0.3,1)",
@@ -346,7 +315,6 @@ export default function PricingPage() {
                         )}
                       </AnimatePresence>
 
-                      {/* ✅ Success state */}
                       <AnimatePresence>
                         {status === "success" && (
                           <motion.div
@@ -355,25 +323,23 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
                             style={{
-                              background: "rgba(16,185,129,0.10)",
-                              border: "1px solid rgba(52,211,153,0.30)",
-                              boxShadow: "0 0 24px rgba(16,185,129,0.12)",
+                              background: "rgba(44,217,123,0.10)",
+                              border: "1px solid rgba(44,217,123,0.30)",
                             }}
                           >
                             <div className="flex items-center gap-2">
-                              <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                              <span className="text-emerald-300 font-bold text-sm">Account confirmed!</span>
+                              <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "#2cd97b" }} />
+                              <span className="font-bold text-sm" style={{ color: "#2cd97b" }}>Account confirmed!</span>
                             </div>
-                            <p className="text-emerald-300/70 text-xs leading-relaxed">
+                            <p className="text-[#9ca3af] text-xs leading-relaxed">
                               Your account has been verified, use the button below to activate your Grand Pro Journal (Full Version)
                             </p>
                           </motion.div>
                         )}
                       </AnimatePresence>
 
-                      {/* ❌ Error state */}
                       <AnimatePresence>
                         {status === "error" && (
                           <motion.div
@@ -382,37 +348,37 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
                             style={{
                               background: "rgba(239,68,68,0.08)",
-                              border: "1px solid rgba(252,165,165,0.25)",
-                              boxShadow: "0 0 24px rgba(239,68,68,0.10)",
+                              border: "1px solid rgba(239,68,68,0.25)",
                             }}
                           >
                             <div className="flex items-center gap-2">
-                              <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                              <span className="text-red-300 font-bold text-sm">Account not found</span>
+                              <XCircle className="w-5 h-5 flex-shrink-0" style={{ color: "#EF4444" }} />
+                              <span className="font-bold text-sm" style={{ color: "#EF4444" }}>Account not found</span>
                             </div>
-                            <p className="text-red-300/65 text-xs leading-relaxed">
+                            <p className="text-[#9ca3af] text-xs leading-relaxed">
                               This account was not registered through the correct link. Log out of your current Pocket Option account, close the tab, then use the link in Step 1 to create a new one.
                             </p>
                             <div className="flex gap-2 mt-1">
                               <button
                                 onClick={handleRetry}
-                                className="flex-1 py-2.5 rounded-xl font-semibold text-red-200 text-sm transition-opacity hover:opacity-80"
+                                className="flex-1 py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
                                 style={{
                                   background: "rgba(239,68,68,0.15)",
-                                  border: "1px solid rgba(252,165,165,0.20)",
+                                  border: "1px solid rgba(239,68,68,0.20)",
+                                  color: "#EF4444",
                                 }}
                               >
                                 Try Again
                               </button>
                               <button
-                                className="flex-1 py-2.5 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
+                                className="flex-1 py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
                                 style={{
-                                  background: "rgba(16,185,129,0.10)",
-                                  border: "1px solid rgba(52,211,153,0.22)",
-                                  color: "rgba(110,231,183,0.75)",
+                                  background: "rgba(77,167,204,0.10)",
+                                  border: "1px solid rgba(77,167,204,0.22)",
+                                  color: "#4da7cc",
                                 }}
                               >
                                 Instructions
@@ -422,7 +388,6 @@ export default function PricingPage() {
                         )}
                       </AnimatePresence>
 
-                      {/* 💳 No deposit state */}
                       <AnimatePresence>
                         {status === "no_deposit" && (
                           <motion.div
@@ -431,26 +396,26 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
                             style={{
-                              background: "rgba(234,179,8,0.08)",
-                              border: "1px solid rgba(253,224,71,0.25)",
-                              boxShadow: "0 0 24px rgba(234,179,8,0.10)",
+                              background: "rgba(245,158,11,0.08)",
+                              border: "1px solid rgba(245,158,11,0.25)",
                             }}
                           >
                             <div className="flex items-center gap-2">
-                              <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                              <span className="text-yellow-300 font-bold text-sm">Account found — deposit required</span>
+                              <AlertCircle className="w-5 h-5 flex-shrink-0" style={{ color: "#F59E0B" }} />
+                              <span className="font-bold text-sm" style={{ color: "#F59E0B" }}>Account found — deposit required</span>
                             </div>
-                            <p className="text-yellow-300/65 text-xs leading-relaxed">
+                            <p className="text-[#9ca3af] text-xs leading-relaxed">
                               Your account is correct, but no deposit was detected. Please deposit the required amount and try again.
                             </p>
                             <button
                               onClick={handleRetry}
-                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-yellow-200 text-sm transition-opacity hover:opacity-80"
+                              className="mt-1 w-full py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
                               style={{
-                                background: "rgba(234,179,8,0.12)",
-                                border: "1px solid rgba(253,224,71,0.20)",
+                                background: "rgba(245,158,11,0.12)",
+                                border: "1px solid rgba(245,158,11,0.20)",
+                                color: "#F59E0B",
                               }}
                             >
                               Try Again
@@ -459,7 +424,6 @@ export default function PricingPage() {
                         )}
                       </AnimatePresence>
 
-                      {/* 🔒 No verification state */}
                       <AnimatePresence>
                         {status === "no_verification" && (
                           <motion.div
@@ -468,26 +432,26 @@ export default function PricingPage() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            className="rounded-lg px-4 py-4 flex flex-col gap-2"
                             style={{
-                              background: "rgba(139,92,246,0.08)",
-                              border: "1px solid rgba(196,181,253,0.25)",
-                              boxShadow: "0 0 24px rgba(139,92,246,0.10)",
+                              background: "rgba(77,167,204,0.08)",
+                              border: "1px solid rgba(77,167,204,0.25)",
                             }}
                           >
                             <div className="flex items-center gap-2">
-                              <ShieldAlert className="w-5 h-5 text-violet-400 flex-shrink-0" />
-                              <span className="text-violet-300 font-bold text-sm">Almost there — verification needed</span>
+                              <ShieldAlert className="w-5 h-5 flex-shrink-0" style={{ color: "#4da7cc" }} />
+                              <span className="font-bold text-sm" style={{ color: "#4da7cc" }}>Almost there — verification needed</span>
                             </div>
-                            <p className="text-violet-300/65 text-xs leading-relaxed">
+                            <p className="text-[#9ca3af] text-xs leading-relaxed">
                               The only thing you lack is the verification. Please complete your account verification on Pocket Option and try again.
                             </p>
                             <button
                               onClick={handleRetry}
-                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-violet-200 text-sm transition-opacity hover:opacity-80"
+                              className="mt-1 w-full py-2.5 rounded-lg font-semibold text-sm transition-opacity hover:opacity-80"
                               style={{
-                                background: "rgba(139,92,246,0.12)",
-                                border: "1px solid rgba(196,181,253,0.20)",
+                                background: "rgba(77,167,204,0.12)",
+                                border: "1px solid rgba(77,167,204,0.20)",
+                                color: "#4da7cc",
                               }}
                             >
                               Try Again
@@ -503,45 +467,40 @@ export default function PricingPage() {
             ))}
           </div>
 
-          {/* CTA */}
           <div className="px-6 pb-6">
             <motion.button
               whileHover={{ scale: 1.02, opacity: 0.95 }}
               whileTap={{ scale: 0.97 }}
-              className="w-full py-4 rounded-2xl font-bold text-white text-base tracking-wide transition-all duration-200"
+              className="w-full py-4 rounded-lg font-bold text-white text-base tracking-wide transition-all duration-200"
               style={{
-                background: "linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #0369a1 100%)",
-                boxShadow: "0 8px 32px rgba(6,182,212,0.30), inset 0 1px 0 rgba(255,255,255,0.2)",
+                background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                 border: "1px solid rgba(255,255,255,0.15)",
               }}
             >
               Activate Pro Version
             </motion.button>
             <div className="flex items-center justify-center gap-1.5 mt-3">
-              <Lock className="w-3 h-3 text-white/18" />
-              <span className="text-white/22 text-[11px]">Secure · No payment needed</span>
+              <Lock className="w-3 h-3 text-[#6b7280]" />
+              <span className="text-[#6b7280] text-[11px]">Secure · No payment needed</span>
             </div>
           </div>
         </div>
 
-        {/* ───── DIVIDER ───── */}
         <div className="flex items-center gap-3 px-2 my-5">
-          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
-          <span className="text-white/18 text-xs font-medium tracking-widest uppercase">or</span>
-          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
+          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.10)" }} />
+          <span className="text-[#6b7280] text-xs font-medium tracking-widest uppercase">or</span>
+          <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.10)" }} />
         </div>
 
-        {/* ───── "I RATHER NOT" BUTTON ───── */}
         <div ref={accordionRef} className="flex flex-col items-center gap-2">
           <motion.button
             onClick={handleTogglePlans}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full flex items-center justify-between px-6 py-4 rounded-2xl text-white/35 hover:text-white/55 transition-all duration-200 text-sm font-medium"
+            className="w-full flex items-center justify-between px-6 py-4 rounded-lg text-[#9ca3af] hover:text-[#b8bcc8] transition-all duration-200 text-sm font-medium"
             style={{
-              background: "rgba(255,255,255,0.025)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.06)",
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.10)",
             }}
           >
             <span>I rather not create an account</span>
@@ -554,7 +513,6 @@ export default function PricingPage() {
           </motion.button>
         </div>
 
-        {/* ───── PLANS SLIDE DOWN ───── */}
         <AnimatePresence initial={false}>
           {showPlans && (
             <motion.div
@@ -582,21 +540,18 @@ export default function PricingPage() {
               className="overflow-hidden"
             >
               <div
-                className="rounded-3xl overflow-hidden"
+                className="rounded-lg overflow-hidden"
                 style={{
                   background: "rgba(255,255,255,0.04)",
-                  backdropFilter: "blur(40px) saturate(180%)",
-                  WebkitBackdropFilter: "blur(40px) saturate(180%)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  boxShadow: "0 8px 48px rgba(20,60,160,0.15)",
+                  border: "1px solid rgba(255,255,255,0.10)",
                 }}
               >
                 <div
                   className="px-5 pt-4 pb-3"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                  style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}
                 >
-                  <p className="text-blue-300/45 text-xs font-semibold tracking-widest uppercase">Select a plan</p>
-                  <p className="text-white/18 text-[11px] mt-0.5">Immediate access · No account required</p>
+                  <p className="text-[#4da7cc] text-xs font-semibold tracking-widest uppercase">Select a plan</p>
+                  <p className="text-[#6b7280] text-[11px] mt-0.5">Immediate access · No account required</p>
                 </div>
 
                 <div className="px-4 py-4 flex flex-col gap-3">
@@ -614,22 +569,21 @@ export default function PricingPage() {
                           ease: [0.16, 1, 0.3, 1],
                         }}
                         onClick={() => setSelectedPlan(plan.id)}
-                        className="relative w-full text-left rounded-2xl transition-all duration-200 overflow-hidden"
+                        className="relative w-full text-left rounded-lg transition-all duration-200 overflow-hidden"
                         style={{
                           background: isSelected
-                            ? "rgba(59,130,246,0.12)"
+                            ? "rgba(77,167,204,0.12)"
                             : "rgba(255,255,255,0.03)",
                           border: isSelected
-                            ? "1.5px solid rgba(96,165,250,0.45)"
-                            : "1.5px solid rgba(255,255,255,0.06)",
-                          boxShadow: isSelected ? "0 4px 24px rgba(59,130,246,0.12)" : "none",
+                            ? "1.5px solid rgba(77,167,204,0.45)"
+                            : "1.5px solid rgba(255,255,255,0.10)",
                         }}
                       >
                         {plan.best && (
                           <span
-                            className="absolute top-0 right-0 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl tracking-wider"
+                            className="absolute top-0 right-0 text-white text-[10px] font-bold px-3 py-1 rounded-bl-md tracking-wider"
                             style={{
-                              background: "linear-gradient(135deg, rgba(59,130,246,0.75), rgba(29,78,216,0.85))",
+                              background: "linear-gradient(135deg, #4da7cc, #357a99)",
                             }}
                           >
                             BEST VALUE
@@ -637,22 +591,22 @@ export default function PricingPage() {
                         )}
                         <div className="flex items-center justify-between px-4 py-4">
                           <div>
-                            <span className="text-blue-300/40 text-[10px] font-bold tracking-widest uppercase block mb-1">
+                            <span className="text-[#9ca3af] text-[10px] font-bold tracking-widest uppercase block mb-1">
                               {plan.label}
                             </span>
                             <div className="flex items-baseline gap-1.5">
                               <span className="text-white text-2xl font-extrabold">{plan.perMonth}</span>
-                              <span className="text-white/28 text-xs">/mo</span>
+                              <span className="text-[#6b7280] text-xs">/mo</span>
                             </div>
                             <div className="flex items-center gap-2 mt-1.5">
-                              <span className="text-white/22 text-xs line-through">{plan.original}</span>
-                              <span className="text-white/65 text-xs font-semibold">{plan.sale}</span>
+                              <span className="text-[#6b7280] text-xs line-through">{plan.original}</span>
+                              <span className="text-[#b8bcc8] text-xs font-semibold">{plan.sale}</span>
                               <span
-                                className="text-[10px] font-bold px-1.5 py-0.5 rounded-md"
+                                className="text-[10px] font-bold px-1.5 py-0.5 rounded-lg"
                                 style={{
-                                  background: "rgba(59,130,246,0.12)",
-                                  border: "1px solid rgba(96,165,250,0.22)",
-                                  color: "#93c5fd",
+                                  background: "rgba(77,167,204,0.12)",
+                                  border: "1px solid rgba(77,167,204,0.22)",
+                                  color: "#4da7cc",
                                 }}
                               >
                                 Save {plan.save}
@@ -663,12 +617,11 @@ export default function PricingPage() {
                             className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200"
                             style={{
                               background: isSelected
-                                ? "linear-gradient(135deg, #60a5fa, #2563eb)"
+                                ? "linear-gradient(135deg, #4da7cc, #65d1cc)"
                                 : "transparent",
                               border: isSelected
-                                ? "1.5px solid rgba(96,165,250,0.8)"
-                                : "1.5px solid rgba(255,255,255,0.12)",
-                              boxShadow: isSelected ? "0 2px 10px rgba(59,130,246,0.35)" : "none",
+                                ? "1.5px solid rgba(77,167,204,0.8)"
+                                : "1.5px solid rgba(255,255,255,0.10)",
                             }}
                           >
                             {isSelected && <Check className="w-3 h-3 text-white stroke-[3]" />}
@@ -686,18 +639,17 @@ export default function PricingPage() {
                     transition={{ delay: 0.3 }}
                     whileHover={{ scale: 1.02, opacity: 0.95 }}
                     whileTap={{ scale: 0.97 }}
-                    className="w-full py-4 rounded-2xl font-bold text-white text-sm transition-all duration-200"
+                    className="w-full py-4 rounded-lg font-bold text-white text-sm transition-all duration-200"
                     style={{
-                      background: "linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #0369a1 100%)",
-                      boxShadow: "0 6px 24px rgba(6,182,212,0.25), inset 0 1px 0 rgba(255,255,255,0.18)",
+                      background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
                       border: "1px solid rgba(255,255,255,0.14)",
                     }}
                   >
                     Continue to Payment
                   </motion.button>
                   <div className="flex items-center justify-center gap-1.5 mt-3">
-                    <Lock className="w-3 h-3 text-white/14" />
-                    <span className="text-white/18 text-[11px]">Secure crypto payment via NOWPayments</span>
+                    <Lock className="w-3 h-3 text-[#6b7280]" />
+                    <span className="text-[#6b7280] text-[11px]">Secure crypto payment via NOWPayments</span>
                   </div>
                 </div>
               </div>
