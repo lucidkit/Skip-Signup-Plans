@@ -263,26 +263,26 @@ export default function ProfilePage() {
             className="md:col-span-2 rounded-2xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(77,167,204,0.15)",
+              border: "1px solid rgba(250,204,21,0.15)",
             }}
           >
             <div
               className="px-5 py-4 flex items-center gap-3"
               style={{
-                background: "linear-gradient(135deg, rgba(77,167,204,0.15) 0%, rgba(77,167,204,0.08) 100%)",
-                borderBottom: "1px solid rgba(77,167,204,0.12)",
+                background: "linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(250,204,21,0.06) 100%)",
+                borderBottom: "1px solid rgba(250,204,21,0.12)",
               }}
             >
               <div
                 className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
+                  background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
                   border: "1px solid rgba(255,255,255,0.25)",
                 }}
               >
                 <Crown className="w-4 h-4 text-white" />
               </div>
-              <h2 className="font-bold text-sm tracking-tight" style={{ color: "#65d1cc" }}>Get Mentorship</h2>
+              <h2 className="font-bold text-sm tracking-tight" style={{ color: "#fcd34d" }}>Get Mentorship</h2>
             </div>
             <div className="px-5 py-4 flex-1 flex flex-col">
               <p className="text-[#9ca3af] text-xs leading-relaxed mb-4">
@@ -291,7 +291,7 @@ export default function ProfilePage() {
               <div className="flex flex-col gap-2 mb-4">
                 {["Personal 1-on-1 mentor", "Exclusive course videos", "Lifetime access"].map((item) => (
                   <div key={item} className="flex items-center gap-2">
-                    <Star className="w-3 h-3 flex-shrink-0" style={{ color: "#4da7cc" }} />
+                    <Star className="w-3 h-3 flex-shrink-0" style={{ color: "#f59e0b" }} />
                     <span className="text-[#b8bcc8] text-xs">{item}</span>
                   </div>
                 ))}
@@ -299,13 +299,13 @@ export default function ProfilePage() {
               <div className="mt-auto">
                 <div className="flex items-baseline gap-1 mb-3">
                   <span className="text-[#6b7280] text-[10px]">Starting from</span>
-                  <span className="font-bold text-lg" style={{ color: "#65d1cc" }}>$2</span>
+                  <span className="font-bold text-lg" style={{ color: "#fcd34d" }}>$2</span>
                   <span className="text-[#9ca3af] text-xs">/lifetime</span>
                 </div>
                 <button
                   className="w-full py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.97]"
                   style={{
-                    background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
+                    background: "linear-gradient(135deg, #f59e0b, #d97706)",
                     border: "1px solid rgba(255,255,255,0.20)",
                     color: "white",
                   }}
@@ -558,35 +558,35 @@ export default function ProfilePage() {
             className="rounded-2xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(77,167,204,0.15)",
+              border: "1px solid rgba(250,204,21,0.15)",
             }}
           >
             <div
               className="px-5 py-4 flex items-center justify-between"
               style={{
-                background: "linear-gradient(135deg, rgba(77,167,204,0.15) 0%, rgba(77,167,204,0.08) 100%)",
-                borderBottom: "1px solid rgba(77,167,204,0.12)",
+                background: "linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(250,204,21,0.06) 100%)",
+                borderBottom: "1px solid rgba(250,204,21,0.12)",
               }}
             >
               <div className="flex items-center gap-3">
                 <div
                   className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
+                    background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
                     border: "1px solid rgba(255,255,255,0.25)",
                   }}
                 >
                   <TrendingUp className="w-4 h-4 text-white" />
                 </div>
-                <h2 className="font-bold text-sm tracking-tight" style={{ color: "#65d1cc" }}>Trading Journal</h2>
+                <h2 className="font-bold text-sm tracking-tight" style={{ color: "#fcd34d" }}>Trading Journal</h2>
               </div>
             </div>
             <div className="px-5 py-4 flex-1 flex flex-col">
               <div
                 className="rounded-xl p-4 mb-4"
                 style={{
-                  background: "rgba(77,167,204,0.04)",
-                  border: "1px solid rgba(77,167,204,0.08)",
+                  background: "rgba(245,158,11,0.04)",
+                  border: "1px solid rgba(250,204,21,0.08)",
                 }}
               >
                 <div className="flex items-end justify-between gap-1.5 h-[80px] mb-2">
@@ -596,8 +596,8 @@ export default function ProfilePage() {
                       className="flex-1 rounded-sm"
                       style={{
                         background: h > 65
-                          ? "linear-gradient(180deg, #4da7cc 0%, rgba(77,167,204,0.40) 100%)"
-                          : "linear-gradient(180deg, rgba(77,167,204,0.35) 0%, rgba(77,167,204,0.10) 100%)",
+                          ? "linear-gradient(180deg, #f59e0b 0%, rgba(245,158,11,0.40) 100%)"
+                          : "linear-gradient(180deg, rgba(245,158,11,0.35) 0%, rgba(245,158,11,0.10) 100%)",
                         minWidth: 4,
                       }}
                       initial={{ height: 0 }}
@@ -640,7 +640,7 @@ export default function ProfilePage() {
               <button
                 className="w-full mt-auto py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.97]"
                 style={{
-                  background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
+                  background: "linear-gradient(135deg, #f59e0b, #d97706)",
                   border: "1px solid rgba(255,255,255,0.20)",
                   color: "white",
                 }}
