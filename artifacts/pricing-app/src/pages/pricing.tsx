@@ -119,6 +119,36 @@ export default function PricingPage() {
         background: "radial-gradient(ellipse at 30% 0%, #0c1e3d 0%, #07111f 55%, #030810 100%)",
       }}
     >
+      {/* UID tooltip image — fixed overlay */}
+      <AnimatePresence>
+        {showUidTooltip && (
+          <motion.div
+            key="uid-tooltip"
+            initial={{ opacity: 0, scale: 0.94, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 8 }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed z-50 bottom-6 left-1/2 -translate-x-1/2"
+            style={{ pointerEvents: "none" }}
+          >
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: "0 16px 48px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.10)",
+                maxWidth: "min(340px, 90vw)",
+              }}
+            >
+              <img
+                src="/uid-sample.png"
+                alt="Where to find your UID"
+                style={{ width: "100%", display: "block" }}
+              />
+            </div>
+            <p className="text-center text-white/35 text-[11px] mt-2">Your UID is shown in your profile</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Ambient glow blobs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[130px]" />
@@ -198,50 +228,20 @@ export default function PricingPage() {
                   {step.input ? (
                     <span className="text-white/80 text-sm leading-snug">
                       Enter your account UID below{" "}
-                      <span className="relative inline-block align-middle">
-                        <button
-                          onMouseEnter={() => setShowUidTooltip(true)}
-                          onMouseLeave={() => setShowUidTooltip(false)}
-                          className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black text-blue-200 cursor-default select-none"
-                          style={{
-                            background: "rgba(96,165,250,0.25)",
-                            border: "1px solid rgba(96,165,250,0.4)",
-                            lineHeight: 1,
-                          }}
-                        >
-                          !
-                        </button>
-                        <AnimatePresence>
-                          {showUidTooltip && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.92, y: 4 }}
-                              animate={{ opacity: 1, scale: 1, y: 0 }}
-                              exit={{ opacity: 0, scale: 0.92, y: 4 }}
-                              transition={{ duration: 0.15 }}
-                              className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2"
-                              style={{ pointerEvents: "none" }}
-                            >
-                              <div
-                                className="rounded-xl overflow-hidden"
-                                style={{
-                                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
-                                  border: "1px solid rgba(255,255,255,0.12)",
-                                }}
-                              >
-                                <img
-                                  src="/uid-sample.png"
-                                  alt="UID sample"
-                                  style={{ width: 220, display: "block" }}
-                                />
-                              </div>
-                              {/* Arrow */}
-                              <div className="flex justify-center">
-                                <div style={{ width: 8, height: 6, background: "rgba(255,255,255,0.12)", clipPath: "polygon(0 0, 100% 0, 50% 100%)" }} />
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </span>
+                      <button
+                        onMouseEnter={() => setShowUidTooltip(true)}
+                        onMouseLeave={() => setShowUidTooltip(false)}
+                        onClick={() => setShowUidTooltip(v => !v)}
+                        className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black text-blue-200 align-middle select-none"
+                        style={{
+                          background: "rgba(96,165,250,0.25)",
+                          border: "1px solid rgba(96,165,250,0.4)",
+                          lineHeight: 1,
+                          cursor: "default",
+                        }}
+                      >
+                        !
+                      </button>
                     </span>
                   ) : (
                     <span className="text-white/80 text-sm leading-snug">{step.label}</span>
