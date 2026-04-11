@@ -53,6 +53,23 @@ export default function PricingPage() {
   const [showPlans, setShowPlans] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("9month");
   const [accountId, setAccountId] = useState("");
+  const [progress, setProgress] = useState(0);
+  const [checking, setChecking] = useState(false);
+
+  const handleSubmit = () => {
+    if (!accountId.trim() || checking) return;
+    setChecking(true);
+    setProgress(0);
+    // Rush to 80%
+    setTimeout(() => setProgress(80), 30);
+    // Pause at 80%, then fill rest
+    setTimeout(() => setProgress(100), 30 + 80 + 80);
+    // Reset after done
+    setTimeout(() => {
+      setChecking(false);
+      setProgress(0);
+    }, 30 + 80 + 80 + 600);
+  };
   const plansRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
@@ -165,37 +182,77 @@ export default function PricingPage() {
                     </a>
                   )}
                   {step.input && (
-                    <div className="flex gap-2 mt-1">
-                      <input
-                        type="text"
-                        placeholder="Your Pocket Option UID"
-                        value={accountId}
-                        onChange={(e) => setAccountId(e.target.value)}
-                        className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
-                        style={{
-                          background: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.10)",
-                          backdropFilter: "blur(20px)",
-                        }}
-                        onFocus={(e) => {
-                          e.currentTarget.style.border = "1px solid rgba(96,165,250,0.45)";
-                          e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                        }}
-                        onBlur={(e) => {
-                          e.currentTarget.style.border = "1px solid rgba(255,255,255,0.10)";
-                          e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                        }}
-                      />
-                      <button
-                        className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
-                        style={{
-                          background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
-                          border: "1px solid rgba(255,255,255,0.15)",
-                          boxShadow: "0 4px 16px rgba(59,130,246,0.25)",
-                        }}
-                      >
-                        Submit
-                      </button>
+                    <div className="flex flex-col gap-2 mt-1">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Your Pocket Option UID"
+                          value={accountId}
+                          onChange={(e) => setAccountId(e.target.value)}
+                          className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
+                          style={{
+                            background: "rgba(255,255,255,0.05)",
+                            border: "1px solid rgba(255,255,255,0.10)",
+                            backdropFilter: "blur(20px)",
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.border = "1px solid rgba(96,165,250,0.45)";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.border = "1px solid rgba(255,255,255,0.10)";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                          }}
+                        />
+                        <button
+                          onClick={handleSubmit}
+                          disabled={checking}
+                          className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-opacity duration-150"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
+                            border: "1px solid rgba(255,255,255,0.15)",
+                            boxShadow: "0 4px 16px rgba(59,130,246,0.25)",
+                            opacity: checking ? 0.6 : 1,
+                          }}
+                        >
+                          {checking ? "Checking..." : "Submit"}
+                        </button>
+                      </div>
+
+                      {/* Progress bar */}
+                      <AnimatePresence>
+                        {checking && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-1"
+                          >
+                            <div
+                              className="w-full rounded-full overflow-hidden"
+                              style={{
+                                height: "5px",
+                                background: "rgba(255,255,255,0.07)",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  height: "100%",
+                                  width: `${progress}%`,
+                                  background: "linear-gradient(90deg, #06b6d4, #3b82f6)",
+                                  borderRadius: "9999px",
+                                  boxShadow: "0 0 8px rgba(6,182,212,0.6)",
+                                  transition: progress === 80
+                                    ? "width 0.35s cubic-bezier(0.16,1,0.3,1)"
+                                    : "width 0.45s cubic-bezier(0.16,1,0.3,1)",
+                                }}
+                              />
+                            </div>
+                            <span className="text-blue-300/50 text-[11px] font-medium">Checking your account...</span>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   )}
                 </div>
