@@ -68,6 +68,7 @@ export default function PricingPage() {
   const [accountId, setAccountId] = useState("");
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState<"idle" | "checking" | "success" | "error">("idle");
+  const [showUidTooltip, setShowUidTooltip] = useState(false);
 
   const handleSubmit = async () => {
     if (!accountId.trim() || status === "checking") return;
@@ -194,7 +195,57 @@ export default function PricingPage() {
                   <span className="text-white text-xs font-bold">{step.num}</span>
                 </div>
                 <div className="flex-1 flex flex-col gap-2">
-                  <span className="text-white/80 text-sm leading-snug">{step.label}</span>
+                  {step.input ? (
+                    <span className="text-white/80 text-sm leading-snug">
+                      Enter your account UID below{" "}
+                      <span className="relative inline-block align-middle">
+                        <button
+                          onMouseEnter={() => setShowUidTooltip(true)}
+                          onMouseLeave={() => setShowUidTooltip(false)}
+                          className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black text-blue-200 cursor-default select-none"
+                          style={{
+                            background: "rgba(96,165,250,0.25)",
+                            border: "1px solid rgba(96,165,250,0.4)",
+                            lineHeight: 1,
+                          }}
+                        >
+                          !
+                        </button>
+                        <AnimatePresence>
+                          {showUidTooltip && (
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.92, y: 4 }}
+                              animate={{ opacity: 1, scale: 1, y: 0 }}
+                              exit={{ opacity: 0, scale: 0.92, y: 4 }}
+                              transition={{ duration: 0.15 }}
+                              className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2"
+                              style={{ pointerEvents: "none" }}
+                            >
+                              <div
+                                className="rounded-xl overflow-hidden"
+                                style={{
+                                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                                  border: "1px solid rgba(255,255,255,0.12)",
+                                }}
+                              >
+                                <img
+                                  src="/uid-sample.png"
+                                  alt="UID sample"
+                                  style={{ width: 220, display: "block" }}
+                                />
+                              </div>
+                              {/* Arrow */}
+                              <div className="flex justify-center">
+                                <div style={{ width: 8, height: 6, background: "rgba(255,255,255,0.12)", clipPath: "polygon(0 0, 100% 0, 50% 100%)" }} />
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </span>
+                    </span>
+                  ) : (
+                    <span className="text-white/80 text-sm leading-snug">{step.label}</span>
+                  )}
                   {step.action && (
                     <a
                       href={step.action.href}
@@ -315,18 +366,6 @@ export default function PricingPage() {
                             <p className="text-emerald-300/70 text-xs leading-relaxed">
                               Your account has been verified, use the button below to activate your Grand Pro Journal (Full Version)
                             </p>
-                            <motion.button
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.97 }}
-                              className="mt-1 w-full py-3 rounded-xl font-bold text-white text-sm"
-                              style={{
-                                background: "linear-gradient(135deg, #059669 0%, #047857 100%)",
-                                boxShadow: "0 4px 20px rgba(16,185,129,0.30)",
-                                border: "1px solid rgba(52,211,153,0.25)",
-                              }}
-                            >
-                              Activate Grand Pro Journal
-                            </motion.button>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -366,10 +405,11 @@ export default function PricingPage() {
                                 Try Again
                               </button>
                               <button
-                                className="flex-1 py-2.5 rounded-xl font-semibold text-white/60 text-sm transition-opacity hover:opacity-80"
+                                className="flex-1 py-2.5 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
                                 style={{
-                                  background: "rgba(255,255,255,0.06)",
-                                  border: "1px solid rgba(255,255,255,0.10)",
+                                  background: "rgba(16,185,129,0.10)",
+                                  border: "1px solid rgba(52,211,153,0.22)",
+                                  color: "rgba(110,231,183,0.75)",
                                 }}
                               >
                                 Instructions
