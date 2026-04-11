@@ -422,6 +422,80 @@ export default function PricingPage() {
                         )}
                       </AnimatePresence>
 
+                      {/* 💳 No deposit state */}
+                      <AnimatePresence>
+                        {status === "no_deposit" && (
+                          <motion.div
+                            key="no-deposit"
+                            initial={{ opacity: 0, scale: 0.95, y: 6 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            style={{
+                              background: "rgba(234,179,8,0.08)",
+                              border: "1px solid rgba(253,224,71,0.25)",
+                              boxShadow: "0 0 24px rgba(234,179,8,0.10)",
+                            }}
+                          >
+                            <div className="flex items-center gap-2">
+                              <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                              <span className="text-yellow-300 font-bold text-sm">Account found — deposit required</span>
+                            </div>
+                            <p className="text-yellow-300/65 text-xs leading-relaxed">
+                              Your account is correct, but no deposit was detected. Please deposit the required amount and try again.
+                            </p>
+                            <button
+                              onClick={handleRetry}
+                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-yellow-200 text-sm transition-opacity hover:opacity-80"
+                              style={{
+                                background: "rgba(234,179,8,0.12)",
+                                border: "1px solid rgba(253,224,71,0.20)",
+                              }}
+                            >
+                              Try Again
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* 🔒 No verification state */}
+                      <AnimatePresence>
+                        {status === "no_verification" && (
+                          <motion.div
+                            key="no-verification"
+                            initial={{ opacity: 0, scale: 0.95, y: 6 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            style={{
+                              background: "rgba(139,92,246,0.08)",
+                              border: "1px solid rgba(196,181,253,0.25)",
+                              boxShadow: "0 0 24px rgba(139,92,246,0.10)",
+                            }}
+                          >
+                            <div className="flex items-center gap-2">
+                              <ShieldAlert className="w-5 h-5 text-violet-400 flex-shrink-0" />
+                              <span className="text-violet-300 font-bold text-sm">Almost there — verification needed</span>
+                            </div>
+                            <p className="text-violet-300/65 text-xs leading-relaxed">
+                              The only thing you lack is the verification. Please complete your account verification on Pocket Option and try again.
+                            </p>
+                            <button
+                              onClick={handleRetry}
+                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-violet-200 text-sm transition-opacity hover:opacity-80"
+                              style={{
+                                background: "rgba(139,92,246,0.12)",
+                                border: "1px solid rgba(196,181,253,0.20)",
+                              }}
+                            >
+                              Try Again
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
                     </div>
                   )}
                 </div>
