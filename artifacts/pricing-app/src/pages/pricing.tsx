@@ -128,14 +128,13 @@ export default function PricingPage() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 8 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed z-50 bottom-6 left-1/2 -translate-x-1/2"
-            style={{ pointerEvents: "none" }}
+            className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ pointerEvents: "none", width: "min(480px, 92vw)" }}
           >
             <div
               className="rounded-2xl overflow-hidden"
               style={{
-                boxShadow: "0 16px 48px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.10)",
-                maxWidth: "min(340px, 90vw)",
+                boxShadow: "0 24px 64px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.12)",
               }}
             >
               <img
