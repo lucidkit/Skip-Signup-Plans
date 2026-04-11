@@ -9,8 +9,9 @@ async function verifyAccountUID(uid: string): Promise<{ valid: boolean }> {
   // TODO: replace with real API call, e.g.:
   // const res = await fetch("/api/verify-uid", { method: "POST", body: JSON.stringify({ uid }) });
   // return res.json();
-  void uid;
-  return new Promise((resolve) => setTimeout(() => resolve({ valid: true }), 0));
+  if (uid === "111") return { valid: true };
+  if (uid === "222") return { valid: false };
+  return { valid: false };
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -312,20 +313,8 @@ export default function PricingPage() {
                               <span className="text-emerald-300 font-bold text-sm">Account confirmed!</span>
                             </div>
                             <p className="text-emerald-300/70 text-xs leading-relaxed">
-                              You can now activate the Pro version.
+                              Your account has been verified. Pro access is now being activated for you.
                             </p>
-                            <motion.button
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.97 }}
-                              className="mt-1 w-full py-3 rounded-xl font-bold text-white text-sm"
-                              style={{
-                                background: "linear-gradient(135deg, #059669 0%, #047857 100%)",
-                                boxShadow: "0 4px 20px rgba(16,185,129,0.30)",
-                                border: "1px solid rgba(52,211,153,0.25)",
-                              }}
-                            >
-                              Activate Pro Version
-                            </motion.button>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -351,7 +340,7 @@ export default function PricingPage() {
                               <span className="text-red-300 font-bold text-sm">Account not found</span>
                             </div>
                             <p className="text-red-300/65 text-xs leading-relaxed">
-                              This account was not created through the proper link. Please try again — make sure you log out of your current account, close the tab, then open the link in Step 1.
+                              This account was not registered through the correct link. Log out of your current Pocket Option account, close the tab, then use the link in Step 1 above to create a new one.
                             </p>
                             <button
                               onClick={handleRetry}
