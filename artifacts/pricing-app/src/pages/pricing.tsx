@@ -313,8 +313,20 @@ export default function PricingPage() {
                               <span className="text-emerald-300 font-bold text-sm">Account confirmed!</span>
                             </div>
                             <p className="text-emerald-300/70 text-xs leading-relaxed">
-                              Your account has been verified. Pro access is now being activated for you.
+                              Your account has been verified, use the button below to activate your Grand Pro Journal (Full Version)
                             </p>
+                            <motion.button
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.97 }}
+                              className="mt-1 w-full py-3 rounded-xl font-bold text-white text-sm"
+                              style={{
+                                background: "linear-gradient(135deg, #059669 0%, #047857 100%)",
+                                boxShadow: "0 4px 20px rgba(16,185,129,0.30)",
+                                border: "1px solid rgba(52,211,153,0.25)",
+                              }}
+                            >
+                              Activate Grand Pro Journal
+                            </motion.button>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -340,18 +352,29 @@ export default function PricingPage() {
                               <span className="text-red-300 font-bold text-sm">Account not found</span>
                             </div>
                             <p className="text-red-300/65 text-xs leading-relaxed">
-                              This account was not registered through the correct link. Log out of your current Pocket Option account, close the tab, then use the link in Step 1 above to create a new one.
+                              This account was not registered through the correct link. Log out of your current Pocket Option account, close the tab, then use the link in Step 1 to create a new one.
                             </p>
-                            <button
-                              onClick={handleRetry}
-                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-red-200 text-sm transition-opacity hover:opacity-80"
-                              style={{
-                                background: "rgba(239,68,68,0.15)",
-                                border: "1px solid rgba(252,165,165,0.20)",
-                              }}
-                            >
-                              Try Again
-                            </button>
+                            <div className="flex gap-2 mt-1">
+                              <button
+                                onClick={handleRetry}
+                                className="flex-1 py-2.5 rounded-xl font-semibold text-red-200 text-sm transition-opacity hover:opacity-80"
+                                style={{
+                                  background: "rgba(239,68,68,0.15)",
+                                  border: "1px solid rgba(252,165,165,0.20)",
+                                }}
+                              >
+                                Try Again
+                              </button>
+                              <button
+                                className="flex-1 py-2.5 rounded-xl font-semibold text-white/60 text-sm transition-opacity hover:opacity-80"
+                                style={{
+                                  background: "rgba(255,255,255,0.06)",
+                                  border: "1px solid rgba(255,255,255,0.10)",
+                                }}
+                              >
+                                Instructions
+                              </button>
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
