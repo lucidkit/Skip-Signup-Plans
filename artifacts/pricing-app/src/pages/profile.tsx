@@ -324,34 +324,34 @@ export default function ProfilePage() {
             className="md:col-span-3 rounded-2xl overflow-hidden flex flex-col"
             style={{
               background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(77,167,204,0.15)",
+              border: "1px solid rgba(250,204,21,0.15)",
             }}
           >
             <div
               className="px-5 py-4 flex items-center justify-between"
               style={{
-                background: "linear-gradient(135deg, rgba(77,167,204,0.15) 0%, rgba(77,167,204,0.08) 100%)",
-                borderBottom: "1px solid rgba(77,167,204,0.12)",
+                background: "linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(250,204,21,0.06) 100%)",
+                borderBottom: "1px solid rgba(250,204,21,0.12)",
               }}
             >
               <div className="flex items-center gap-3">
                 <div
                   className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
+                    background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
                     border: "1px solid rgba(255,255,255,0.25)",
                   }}
                 >
                   <Crown className="w-4 h-4 text-white" />
                 </div>
-                <h2 className="font-bold text-sm tracking-tight" style={{ color: "#65d1cc" }}>Unlock PRO</h2>
+                <h2 className="font-bold text-sm tracking-tight" style={{ color: "#fcd34d" }}>Unlock Pro Journal</h2>
               </div>
               <span
                 className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full"
                 style={{
-                  background: "rgba(77,167,204,0.12)",
-                  color: "#65d1cc",
-                  border: "1px solid rgba(77,167,204,0.20)",
+                  background: "rgba(245,158,11,0.12)",
+                  color: "#fcd34d",
+                  border: "1px solid rgba(250,204,21,0.20)",
                 }}
               >
                 Features you're missing
@@ -369,13 +369,13 @@ export default function ProfilePage() {
                     key={feat.label}
                     className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl"
                     style={{
-                      background: "rgba(77,167,204,0.04)",
-                      border: "1px solid rgba(77,167,204,0.10)",
+                      background: "rgba(245,158,11,0.04)",
+                      border: "1px solid rgba(250,204,21,0.10)",
                     }}
                   >
-                    <feat.icon className="w-4 h-4 flex-shrink-0" style={{ color: "rgba(77,167,204,0.50)" }} />
+                    <feat.icon className="w-4 h-4 flex-shrink-0" style={{ color: "rgba(245,158,11,0.50)" }} />
                     <span className="text-[#b8bcc8] text-xs font-medium">{feat.label}</span>
-                    <Lock className="w-3 h-3 ml-auto flex-shrink-0" style={{ color: "rgba(77,167,204,0.30)" }} />
+                    <Lock className="w-3 h-3 ml-auto flex-shrink-0" style={{ color: "rgba(250,204,21,0.30)" }} />
                   </div>
                 ))}
               </div>
@@ -383,7 +383,7 @@ export default function ProfilePage() {
                 <div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-[#6b7280] text-[10px]">Starting from</span>
-                    <span className="font-bold text-lg" style={{ color: "#65d1cc" }}>$16.58</span>
+                    <span className="font-bold text-lg" style={{ color: "#fcd34d" }}>$16.58</span>
                     <span className="text-[#9ca3af] text-xs">/mo</span>
                   </div>
                 </div>
@@ -391,9 +391,9 @@ export default function ProfilePage() {
                   <span
                     className="text-[10px] font-semibold px-2 py-1 rounded-full"
                     style={{
-                      background: "rgba(77,167,204,0.15)",
-                      color: "#65d1cc",
-                      border: "1px solid rgba(77,167,204,0.25)",
+                      background: "rgba(245,158,11,0.15)",
+                      color: "#fcd34d",
+                      border: "1px solid rgba(250,204,21,0.25)",
                     }}
                   >
                     SAVE $77/yr
@@ -401,7 +401,7 @@ export default function ProfilePage() {
                   <button
                     className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-[0.97]"
                     style={{
-                      background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
+                      background: "linear-gradient(135deg, #f59e0b, #d97706)",
                       border: "1px solid rgba(255,255,255,0.20)",
                       color: "white",
                     }}
@@ -659,29 +659,29 @@ export default function ProfilePage() {
           className="rounded-2xl overflow-hidden relative"
           style={{
             background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(77,167,204,0.15)",
+            border: "1px solid rgba(250,204,21,0.15)",
           }}
         >
           <div
             className="px-5 py-4 flex items-center justify-between relative z-10"
             style={{
-              background: "linear-gradient(135deg, rgba(77,167,204,0.15) 0%, rgba(77,167,204,0.08) 100%)",
-              borderBottom: "1px solid rgba(77,167,204,0.12)",
+              background: "linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(250,204,21,0.06) 100%)",
+              borderBottom: "1px solid rgba(250,204,21,0.12)",
             }}
           >
             <div className="flex items-center gap-3">
               <div
                 className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: "linear-gradient(135deg, #4da7cc 0%, #65d1cc 100%)",
+                  background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
                   border: "1px solid rgba(255,255,255,0.25)",
                 }}
               >
                 <GraduationCap className="w-4 h-4 text-white" />
               </div>
-              <h2 className="font-bold text-sm tracking-tight" style={{ color: "#65d1cc" }}>My Courses</h2>
+              <h2 className="font-bold text-sm tracking-tight" style={{ color: "#fcd34d" }}>My Courses</h2>
             </div>
-            <button className="flex items-center gap-1 text-[10px] font-medium transition-colors" style={{ color: "rgba(77,167,204,0.60)" }}>
+            <button className="flex items-center gap-1 text-[10px] font-medium transition-colors" style={{ color: "rgba(245,158,11,0.60)" }}>
               View Course <ChevronRight className="w-3 h-3" />
             </button>
           </div>
@@ -701,22 +701,22 @@ export default function ProfilePage() {
                     key={course.title}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl"
                     style={{
-                      background: "rgba(77,167,204,0.04)",
-                      border: "1px solid rgba(77,167,204,0.08)",
+                      background: "rgba(245,158,11,0.04)",
+                      border: "1px solid rgba(250,204,21,0.08)",
                     }}
                   >
                     <div
                       className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{
                         background: course.type === "video"
-                          ? "rgba(77,167,204,0.15)"
-                          : "rgba(77,167,204,0.10)",
+                          ? "rgba(245,158,11,0.15)"
+                          : "rgba(245,158,11,0.10)",
                       }}
                     >
                       {course.type === "video" ? (
-                        <Play className="w-3.5 h-3.5" style={{ color: "#4da7cc" }} />
+                        <Play className="w-3.5 h-3.5" style={{ color: "#f59e0b" }} />
                       ) : (
-                        <FileText className="w-3.5 h-3.5" style={{ color: "#4da7cc" }} />
+                        <FileText className="w-3.5 h-3.5" style={{ color: "#f59e0b" }} />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -733,20 +733,20 @@ export default function ProfilePage() {
               <div
                 className="w-16 h-16 rounded-xl flex items-center justify-center mb-3"
                 style={{
-                  background: "linear-gradient(135deg, rgba(77,167,204,0.25) 0%, rgba(77,167,204,0.20) 100%)",
-                  border: "1px solid rgba(77,167,204,0.30)",
+                  background: "linear-gradient(135deg, rgba(245,158,11,0.25) 0%, rgba(250,204,21,0.20) 100%)",
+                  border: "1px solid rgba(250,204,21,0.30)",
                 }}
               >
-                <Lock className="w-7 h-7" style={{ color: "#4da7cc" }} />
+                <Lock className="w-7 h-7" style={{ color: "#f59e0b" }} />
               </div>
-              <h3 className="font-semibold text-sm mb-1" style={{ color: "#65d1cc" }}>Unlock Exclusive Courses</h3>
+              <h3 className="font-semibold text-sm mb-1" style={{ color: "#fcd34d" }}>Unlock Exclusive Courses</h3>
               <p className="text-[#9ca3af] text-xs leading-relaxed max-w-sm text-center mb-4 px-4">
                 Purchase a mentorship plan to access Pro, Elite & Monster trading courses with lifetime access
               </p>
               <button
                 className="px-6 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all duration-200 active:scale-[0.97]"
                 style={{
-                  background: "linear-gradient(135deg, #4da7cc, #65d1cc)",
+                  background: "linear-gradient(135deg, #f59e0b, #d97706)",
                   border: "1px solid rgba(255,255,255,0.20)",
                   color: "white",
                 }}
