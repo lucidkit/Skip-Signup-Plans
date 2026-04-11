@@ -122,8 +122,8 @@ export default function PricingPage() {
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-white font-bold text-xl tracking-tight leading-tight">Get Grand Pro Journal (Full Version)</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-white font-bold text-xl tracking-tight leading-tight whitespace-nowrap">Get Pro Journal (Full Version)</span>
                 </div>
                 <p className="text-blue-300/55 text-xs mt-1 font-medium">No Payment Required !</p>
               </div>
