@@ -62,8 +62,8 @@ export default function PricingPage() {
     setShowPlans(opening);
     if (opening) {
       setTimeout(() => {
-        accordionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 60);
+        plansRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 520);
     } else {
       topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
