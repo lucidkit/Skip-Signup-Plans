@@ -228,7 +228,7 @@ export default function HomePage() {
               <img
                 src="/hero-trader.png"
                 alt="Trading mentor"
-                className="relative z-10 w-full max-w-md rounded-2xl"
+                className="relative z-10 w-full max-w-2xl rounded-2xl"
                 style={{
                   filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.5))",
                 }}
