@@ -65,6 +65,8 @@ export default function PricingPage() {
         plansRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
       }, 520);
     } else {
+      const el = document.scrollingElement || document.documentElement || document.body;
+      el.scrollTo({ top: 0, behavior: "smooth" });
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
