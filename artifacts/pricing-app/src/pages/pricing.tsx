@@ -55,14 +55,15 @@ export default function PricingPage() {
   const [accountId, setAccountId] = useState("");
   const plansRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
+  const accordionRef = useRef<HTMLDivElement>(null);
 
   const handleTogglePlans = () => {
     const opening = !showPlans;
     setShowPlans(opening);
     if (opening) {
       setTimeout(() => {
-        plansRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 460);
+        accordionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 60);
     } else {
       topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -229,7 +230,7 @@ export default function PricingPage() {
         </div>
 
         {/* ───── "I RATHER NOT" BUTTON ───── */}
-        <div className="flex flex-col items-center gap-2">
+        <div ref={accordionRef} className="flex flex-col items-center gap-2">
           <motion.button
             onClick={handleTogglePlans}
             whileHover={{ scale: 1.01 }}
