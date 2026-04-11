@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gift, Check, ExternalLink, Sparkles, ChevronDown, Lock } from "lucide-react";
+import { BookOpen, Check, ExternalLink, Sparkles, ChevronDown, Lock } from "lucide-react";
 
 const plans = [
   {
@@ -33,8 +33,8 @@ const plans = [
 const steps = [
   {
     num: 1,
-    label: "Create a Quotex account using the link below",
-    action: { text: "Open Quotex", href: "#" },
+    label: "Create your Main Pocket Option account using the link below (Close/delete your existing account if you have any)",
+    action: { text: "Open Pocket Option", href: "#" },
   },
   {
     num: 2,
@@ -43,7 +43,7 @@ const steps = [
   },
   {
     num: 3,
-    label: "Enter your Account ID below",
+    label: "Enter your account UID below",
     action: null,
     input: true,
   },
@@ -119,23 +119,13 @@ export default function PricingPage() {
                   boxShadow: "0 4px 20px rgba(59,130,246,0.35)",
                 }}
               >
-                <Gift className="w-6 h-6 text-white" />
+                <BookOpen className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-white font-bold text-2xl tracking-tight">Get Pro for</span>
-                  <span
-                    className="text-2xl font-extrabold"
-                    style={{
-                      background: "linear-gradient(90deg, #bfdbfe, #93c5fd, #60a5fa)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    FREE
-                  </span>
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <span className="text-white font-bold text-xl tracking-tight leading-tight">Get Grand Pro Journal (Full Version)</span>
                 </div>
-                <p className="text-blue-300/55 text-xs mt-0.5 font-medium">No credit card or payment required</p>
+                <p className="text-blue-300/55 text-xs mt-1 font-medium">No Payment Required !</p>
               </div>
             </div>
           </div>
@@ -172,13 +162,13 @@ export default function PricingPage() {
                     </a>
                   )}
                   {step.input && (
-                    <div className="flex gap-2 mt-1">
+                    <div className="flex flex-col gap-2 mt-1">
                       <input
                         type="text"
-                        placeholder="Enter your Quotex Account ID"
+                        placeholder="Enter your Pocket Option UID"
                         value={accountId}
                         onChange={(e) => setAccountId(e.target.value)}
-                        className="flex-1 rounded-xl px-4 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
+                        className="w-full rounded-xl px-4 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
                         style={{
                           background: "rgba(255,255,255,0.05)",
                           border: "1px solid rgba(255,255,255,0.10)",
@@ -194,7 +184,7 @@ export default function PricingPage() {
                         }}
                       />
                       <button
-                        className="text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
+                        className="w-full text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:opacity-90 transition-opacity duration-150"
                         style={{
                           background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
                           border: "1px solid rgba(255,255,255,0.15)",
@@ -259,7 +249,6 @@ export default function PricingPage() {
               <ChevronDown className="w-4 h-4" />
             </motion.span>
           </motion.button>
-          <p className="text-white/14 text-[11px]">Higher pricing applies without an account</p>
         </div>
 
         {/* ───── PLANS SLIDE DOWN ───── */}
