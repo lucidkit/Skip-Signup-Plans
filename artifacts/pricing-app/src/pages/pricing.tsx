@@ -1,6 +1,18 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Check, ExternalLink, Sparkles, ChevronDown, Lock } from "lucide-react";
+import { BookOpen, Check, ExternalLink, Sparkles, ChevronDown, Lock, CheckCircle2, XCircle } from "lucide-react";
+
+// ── Backend hook ─────────────────────────────────────────────────────────────
+// Replace this function with a real API call when the backend is ready.
+// It should return { valid: boolean }.
+async function verifyAccountUID(uid: string): Promise<{ valid: boolean }> {
+  // TODO: replace with real API call, e.g.:
+  // const res = await fetch("/api/verify-uid", { method: "POST", body: JSON.stringify({ uid }) });
+  // return res.json();
+  void uid;
+  return new Promise((resolve) => setTimeout(() => resolve({ valid: true }), 0));
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 const plans = [
   {
@@ -54,21 +66,31 @@ export default function PricingPage() {
   const [selectedPlan, setSelectedPlan] = useState("9month");
   const [accountId, setAccountId] = useState("");
   const [progress, setProgress] = useState(0);
-  const [checking, setChecking] = useState(false);
+  const [status, setStatus] = useState<"idle" | "checking" | "success" | "error">("idle");
 
-  const handleSubmit = () => {
-    if (!accountId.trim() || checking) return;
-    setChecking(true);
+  const handleSubmit = async () => {
+    if (!accountId.trim() || status === "checking") return;
+    setStatus("checking");
     setProgress(0);
-    // Rush to 80%
+
+    // Phase 1: rush to 80% fast
     setTimeout(() => setProgress(80), 30);
-    // Pause at 80%, then fill rest
-    setTimeout(() => setProgress(100), 30 + 80 + 80);
-    // Reset after done
-    setTimeout(() => {
-      setChecking(false);
-      setProgress(0);
-    }, 30 + 80 + 80 + 600);
+
+    // Phase 2: pause 150ms at 80%, then fill to 100%
+    const fillDone = 30 + 150 + 400; // ~580ms total
+    setTimeout(() => setProgress(100), 30 + 150);
+
+    // Phase 3: after bar finishes, call backend & show result
+    setTimeout(async () => {
+      const result = await verifyAccountUID(accountId.trim());
+      setStatus(result.valid ? "success" : "error");
+    }, fillDone);
+  };
+
+  const handleRetry = () => {
+    setStatus("idle");
+    setProgress(0);
+    setAccountId("");
   };
   const plansRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
@@ -183,58 +205,74 @@ export default function PricingPage() {
                   )}
                   {step.input && (
                     <div className="flex flex-col gap-2 mt-1">
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          placeholder="Your Pocket Option UID"
-                          value={accountId}
-                          onChange={(e) => setAccountId(e.target.value)}
-                          className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
-                          style={{
-                            background: "rgba(255,255,255,0.05)",
-                            border: "1px solid rgba(255,255,255,0.10)",
-                            backdropFilter: "blur(20px)",
-                          }}
-                          onFocus={(e) => {
-                            e.currentTarget.style.border = "1px solid rgba(96,165,250,0.45)";
-                            e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                          }}
-                          onBlur={(e) => {
-                            e.currentTarget.style.border = "1px solid rgba(255,255,255,0.10)";
-                            e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                          }}
-                        />
-                        <button
-                          onClick={handleSubmit}
-                          disabled={checking}
-                          className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-opacity duration-150"
-                          style={{
-                            background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
-                            border: "1px solid rgba(255,255,255,0.15)",
-                            boxShadow: "0 4px 16px rgba(59,130,246,0.25)",
-                            opacity: checking ? 0.6 : 1,
-                          }}
-                        >
-                          {checking ? "Checking..." : "Submit"}
-                        </button>
-                      </div>
 
-                      {/* Progress bar */}
-                      <AnimatePresence>
-                        {checking && (
+                      {/* Input row — hidden after result */}
+                      <AnimatePresence initial={false}>
+                        {status !== "success" && status !== "error" && (
                           <motion.div
+                            key="input-row"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="flex gap-2"
+                          >
+                            <input
+                              type="text"
+                              placeholder="Your Pocket Option UID"
+                              value={accountId}
+                              onChange={(e) => setAccountId(e.target.value)}
+                              disabled={status === "checking"}
+                              className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-white text-sm outline-none transition-all duration-200 placeholder:text-white/20"
+                              style={{
+                                background: "rgba(255,255,255,0.05)",
+                                border: "1px solid rgba(255,255,255,0.10)",
+                                backdropFilter: "blur(20px)",
+                                opacity: status === "checking" ? 0.5 : 1,
+                              }}
+                              onFocus={(e) => {
+                                e.currentTarget.style.border = "1px solid rgba(96,165,250,0.45)";
+                                e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                              }}
+                              onBlur={(e) => {
+                                e.currentTarget.style.border = "1px solid rgba(255,255,255,0.10)";
+                                e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                              }}
+                            />
+                            <button
+                              onClick={handleSubmit}
+                              disabled={status === "checking"}
+                              className="flex-shrink-0 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-opacity duration-150"
+                              style={{
+                                background: "linear-gradient(135deg, rgba(59,130,246,0.8) 0%, rgba(29,78,216,0.9) 100%)",
+                                border: "1px solid rgba(255,255,255,0.15)",
+                                boxShadow: "0 4px 16px rgba(59,130,246,0.25)",
+                                opacity: status === "checking" ? 0.5 : 1,
+                              }}
+                            >
+                              {status === "checking" ? "Checking..." : "Submit"}
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Progress bar — shown while checking */}
+                      <AnimatePresence>
+                        {status === "checking" && (
+                          <motion.div
+                            key="progress"
                             initial={{ opacity: 0, y: -4 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="flex flex-col gap-1"
+                            className="flex flex-col gap-1.5"
                           >
+                            <div className="flex items-center justify-between">
+                              <span className="text-blue-300/55 text-[11px] font-medium">Checking your account...</span>
+                              <span className="text-blue-300/70 text-[11px] font-bold tabular-nums">{progress}%</span>
+                            </div>
                             <div
                               className="w-full rounded-full overflow-hidden"
-                              style={{
-                                height: "5px",
-                                background: "rgba(255,255,255,0.07)",
-                              }}
+                              style={{ height: "5px", background: "rgba(255,255,255,0.07)" }}
                             >
                               <div
                                 style={{
@@ -242,17 +280,93 @@ export default function PricingPage() {
                                   width: `${progress}%`,
                                   background: "linear-gradient(90deg, #06b6d4, #3b82f6)",
                                   borderRadius: "9999px",
-                                  boxShadow: "0 0 8px rgba(6,182,212,0.6)",
-                                  transition: progress === 80
-                                    ? "width 0.35s cubic-bezier(0.16,1,0.3,1)"
-                                    : "width 0.45s cubic-bezier(0.16,1,0.3,1)",
+                                  boxShadow: "0 0 10px rgba(6,182,212,0.65)",
+                                  transition: progress <= 80
+                                    ? "width 0.38s cubic-bezier(0.16,1,0.3,1)"
+                                    : "width 0.42s cubic-bezier(0.16,1,0.3,1)",
                                 }}
                               />
                             </div>
-                            <span className="text-blue-300/50 text-[11px] font-medium">Checking your account...</span>
                           </motion.div>
                         )}
                       </AnimatePresence>
+
+                      {/* ✅ Success state */}
+                      <AnimatePresence>
+                        {status === "success" && (
+                          <motion.div
+                            key="success"
+                            initial={{ opacity: 0, scale: 0.95, y: 6 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            style={{
+                              background: "rgba(16,185,129,0.10)",
+                              border: "1px solid rgba(52,211,153,0.30)",
+                              boxShadow: "0 0 24px rgba(16,185,129,0.12)",
+                            }}
+                          >
+                            <div className="flex items-center gap-2">
+                              <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                              <span className="text-emerald-300 font-bold text-sm">Account confirmed!</span>
+                            </div>
+                            <p className="text-emerald-300/70 text-xs leading-relaxed">
+                              You can now activate the Pro version.
+                            </p>
+                            <motion.button
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.97 }}
+                              className="mt-1 w-full py-3 rounded-xl font-bold text-white text-sm"
+                              style={{
+                                background: "linear-gradient(135deg, #059669 0%, #047857 100%)",
+                                boxShadow: "0 4px 20px rgba(16,185,129,0.30)",
+                                border: "1px solid rgba(52,211,153,0.25)",
+                              }}
+                            >
+                              Activate Pro Version
+                            </motion.button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* ❌ Error state */}
+                      <AnimatePresence>
+                        {status === "error" && (
+                          <motion.div
+                            key="error"
+                            initial={{ opacity: 0, scale: 0.95, y: 6 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="rounded-2xl px-4 py-4 flex flex-col gap-2"
+                            style={{
+                              background: "rgba(239,68,68,0.08)",
+                              border: "1px solid rgba(252,165,165,0.25)",
+                              boxShadow: "0 0 24px rgba(239,68,68,0.10)",
+                            }}
+                          >
+                            <div className="flex items-center gap-2">
+                              <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                              <span className="text-red-300 font-bold text-sm">Account not found</span>
+                            </div>
+                            <p className="text-red-300/65 text-xs leading-relaxed">
+                              This account was not created through the proper link. Please try again — make sure you log out of your current account, close the tab, then open the link in Step 1.
+                            </p>
+                            <button
+                              onClick={handleRetry}
+                              className="mt-1 w-full py-2.5 rounded-xl font-semibold text-red-200 text-sm transition-opacity hover:opacity-80"
+                              style={{
+                                background: "rgba(239,68,68,0.15)",
+                                border: "1px solid rgba(252,165,165,0.20)",
+                              }}
+                            >
+                              Try Again
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
                     </div>
                   )}
                 </div>
