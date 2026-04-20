@@ -9,6 +9,7 @@ import HomePage from "@/pages/home";
 import PricingGlassPage from "@/pages/pricing-glass";
 import ProfileGlassPage from "@/pages/profile-glass";
 import HomeGlassPage from "@/pages/home-glass";
+import DrGrandAssist from "@/components/DrGrandAssist";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ function App() {
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
+          <DrGrandAssist />
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
